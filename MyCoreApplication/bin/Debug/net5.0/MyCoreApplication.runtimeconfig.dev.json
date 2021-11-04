@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\klebe\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\klebe\\.nuget\\packages"
-    ]
-  }
-=======
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
@@ -14,5 +5,4 @@
       "C:\\Users\\Vanessa\\.nuget\\packages"
     ]
   }
->>>>>>> 6d64ee0324d59f4ecdf9c7bf8855171f22b31094
 }

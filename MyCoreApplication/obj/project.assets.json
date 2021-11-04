@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\klebe\\.nuget\\packages\\": {}
+    "C:\\Users\\Vanessa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+      "projectUniqueName": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
       "projectName": "MyCoreApplication",
-      "projectPath": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
-      "packagesPath": "C:\\Users\\klebe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\obj\\",
+      "projectPath": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+      "packagesPath": "C:\\Users\\Vanessa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\klebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vanessa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

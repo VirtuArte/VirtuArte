@@ -78,3 +78,43 @@ C:\Users\klebe\Desktop\IFSP\313 (2021)\TDS - Teoria em Desenvolvimento de Sistem
 C:\Users\klebe\Desktop\IFSP\313 (2021)\TDS - Teoria em Desenvolvimento de Sistemas\PROJETO\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.pdb
 C:\Users\klebe\Desktop\IFSP\313 (2021)\TDS - Teoria em Desenvolvimento de Sistemas\PROJETO\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.genruntimeconfig.cache
 C:\Users\klebe\Desktop\IFSP\313 (2021)\TDS - Teoria em Desenvolvimento de Sistemas\PROJETO\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.csproj.CopyComplete
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\appsettings.json
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.exe
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.deps.json
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.runtimeconfig.json
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.runtimeconfig.dev.json
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.dll
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\ref\MyCoreApplication.dll
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.pdb
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.Views.dll
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\bin\Debug\net5.0\MyCoreApplication.Views.pdb
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.csproj.AssemblyReference.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.AssemblyInfoInputs.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.AssemblyInfo.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.csproj.CoreCompileInputs.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.RazorAssemblyInfo.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.RazorAssemblyInfo.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\staticwebassets\MyCoreApplication.StaticWebAssets.Manifest.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\staticwebassets\MyCoreApplication.StaticWebAssets.xml
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\scopedcss\bundle\MyCoreApplication.styles.css
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.TagHelpers.input.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.TagHelpers.output.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.RazorCoreGenerate.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.RazorTargetAssemblyInfo.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.RazorTargetAssemblyInfo.cs
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.Views.pdb
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.dll
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\ref\MyCoreApplication.dll
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.pdb
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.genruntimeconfig.cache
+C:\Users\Vanessa\Documents\VsCode Arquivos\VirtuArte\MyCoreApplication\obj\Debug\net5.0\MyCoreApplication.csproj.CopyComplete
