@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {}
+    "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {
+    "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+        "projectUniqueName": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
         "projectName": "MyCoreApplication",
-        "projectPath": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
-        "packagesPath": "C:\\Users\\pvicc\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\obj\\",
+        "projectPath": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+        "packagesPath": "C:\\Users\\klebe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\klebe\\Desktop\\IFSP\\313 (2021)\\TDS - Teoria em Desenvolvimento de Sistemas\\PROJETO\\VirtuArte\\MyCoreApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pvicc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\klebe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

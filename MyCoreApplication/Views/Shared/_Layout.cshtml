@@ -12,12 +12,14 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+        <nav
+            class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
             <div class="container justify-content-between">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img class="logo" src="img/logo.png" alt="Logo VirtuArte">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
@@ -27,12 +29,15 @@
                 <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
                     <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
+                    <div
+                        class="offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
                         <ul class="navbar-nav flex-grow-1 mb-2 mt-2">
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home"
@@ -51,10 +56,21 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+            <div>
+                <img src="~/img/mockup_home.png" alt="MockUp Tela VirtuArte">
+                <div>
+                    <h2>Perfis pessoais e comerciais para você espalhar cultura</h2>
+                    <h4>Compartilhe suas experiências</h4>
+                </div>
+            </div>
+            <div>
+                <h2>Conheça o Vitu</h2>
+                <img src="~/img/chat_home.png" alt="Conversa com o ChatBot Vitu">
+            </div>
         </main>
     </div>
 
