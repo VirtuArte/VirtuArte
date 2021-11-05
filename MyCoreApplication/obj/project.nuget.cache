@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0Zn+XqQD3UiMMtSbDzP1MCuzhuntWC5HjhKN+jPhiUtgAXd7x6KTbTeVTLade5nW7jNCwJciFUtgJyN33TPHDA==",
+  "dgSpecHash": "4qmRjIEAv/WxI7ZQURHtFs/kyUdXz50NNVR7D783tFfPUnOeP2Ve3ArXHQzdZCdG4M2ifDMrMsqeOrFyC3MvyQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+  "projectFilePath": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

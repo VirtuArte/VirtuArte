@@ -1,5 +1,5 @@
 {
-  "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+  "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15619,38 +15619,38 @@
   "RootNamespace": "MyCoreApplication",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\_ViewImports.cshtml",
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\Views\\Home\\Privacy.cshtml",
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
       "FileKind": "mvc"
     }
   ],

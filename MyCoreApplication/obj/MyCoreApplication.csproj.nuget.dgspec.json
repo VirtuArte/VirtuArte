@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {}
+    "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {
+    "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+        "projectUniqueName": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
         "projectName": "MyCoreApplication",
-        "projectPath": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
-        "packagesPath": "C:\\Users\\Vanessa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vanessa\\Documents\\VsCode Arquivos\\VirtuArte\\MyCoreApplication\\obj\\",
+        "projectPath": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\MyCoreApplication.csproj",
+        "packagesPath": "C:\\Users\\pvicc\\.nuget\\packages\\",
+        "outputPath": "C:\\xampp\\htdocs\\VirtuArte\\MyCoreApplication\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Vanessa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pvicc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

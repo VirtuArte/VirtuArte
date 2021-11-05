@@ -62,12 +62,75 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
+
+/* -------------novo------------- */
+:root{
+  --purple: hsl(282, 44%, 55%);
+  --blue: hsl(183, 83%, 45%);
 }
 
-li {
-  list-style: none;
+header .navbar-nav li{
+    margin: 0 2rem;
+    text-transform: uppercase;
+}
+
+header .button button{
+    width: 6.5rem;
+    height: 2.5rem;
+    border-radius: 3.125rem;
+    border: none;
+    transition: all 0.2s;
+}
+
+header .button button:hover{
+    background-color: var(--blue);
+}
+
+header .navbar-expand-md div.offcanvas{
+    flex-grow: 0.685;
+}
+
+header .justify-items-center{
+    justify-items: center;
+}
+
+.bg-purple{
+    background-color: var(--purple);
+    color: white;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+}
+
+footer hr{
+    background-color: white;
+    opacity: 0.75;
+}
+
+.list-style-disc{
+    list-style: disc;
+}
+
+.nav-footer li:first-child{
+    list-style: none;
+}
+
+footer .nav-link, footer .nav-link:hover{
+    color: white;
+}
+
+footer .nav-link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  footer .navbar-nav.flex-row{
+      flex-direction: column !important;
+      list-style: none;
+  }
 }
