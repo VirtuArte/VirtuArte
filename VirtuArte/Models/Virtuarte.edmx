@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="virtuarteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'virtuarte.dbo.avalia' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="avalia">
+          <Property Name="fk_pessoa_fisica_id_pessoa_fisica" Type="int" />
+          <Property Name="fk_pessoa_fisica_fk_usuario_id_usuario" Type="int" />
+          <Property Name="fk_organizacao_id_organizacao" Type="int" />
+          <Property Name="fk_organizacao_fk_usuario_id_usuario" Type="int" />
+          <Property Name="avaliacao" Type="text" />
+          <Property Name="pontuacao" Type="int" />
+          <Property Name="seguro" Type="int" />
+          <Property Name="ar_livre" Type="int" />
+          <Property Name="fotografavel" Type="int" />
+          <Property Name="descontraido" Type="int" />
+          <Property Name="acessibilidade" Type="int" />
+          <Property Name="boa_culinaria" Type="int" />
+          <Property Name="agitado" Type="int" />
+          <Property Name="boa_localizacao" Type="int" />
+          <Property Name="calmo" Type="int" />
+          <Property Name="boa_paisagem" Type="int" />
+        </EntityType>-->
+        <EntityType Name="bairro">
+          <Key>
+            <PropertyRef Name="id_bairro" />
+          </Key>
+          <Property Name="id_bairro" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="80" />
+          <Property Name="fk_cidade_id_cidade" Type="int" />
+        </EntityType>
+        <EntityType Name="cidade">
+          <Key>
+            <PropertyRef Name="id_cidade" />
+          </Key>
+          <Property Name="nome" Type="varchar" MaxLength="80" />
+          <Property Name="id_cidade" Type="int" Nullable="false" />
+          <Property Name="fk_estado_id_estado" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'virtuarte.dbo.curte' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="curte">
+          <Property Name="fk_usuario_id_usuario" Type="int" />
+          <Property Name="fk_publicacao_id_publicacao" Type="int" />
+          <Property Name="curtir" Type="int" />
+        </EntityType>-->
+        <EntityType Name="endereco">
+          <Key>
+            <PropertyRef Name="id_endereco" />
+          </Key>
+          <Property Name="logradouro" Type="varchar" MaxLength="255" />
+          <Property Name="cep" Type="int" />
+          <Property Name="numero" Type="int" />
+          <Property Name="id_endereco" Type="int" Nullable="false" />
+          <Property Name="complemento" Type="varchar" MaxLength="100" />
+          <Property Name="fk_bairro_id_bairro" Type="int" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="int" Nullable="false" />
+          <Property Name="nome" Type="char" MaxLength="50" />
+          <Property Name="sigla" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="interage">
+          <Key>
+            <PropertyRef Name="id_interacao" />
+          </Key>
+          <Property Name="fk_publicacao_id_publicacao" Type="int" />
+          <Property Name="fk_usuario_id_usuario" Type="int" />
+          <Property Name="comentario" Type="text" />
+          <Property Name="id_interacao" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="organizacao">
+          <Key>
+            <PropertyRef Name="id_organizacao" />
+            <PropertyRef Name="fk_usuario_id_usuario" />
+          </Key>
+          <Property Name="pontuacao" Type="int" />
+          <Property Name="id_organizacao" Type="int" Nullable="false" />
+          <Property Name="descricao" Type="text" />
+          <Property Name="valor" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="fk_usuario_id_usuario" Type="int" Nullable="false" />
+          <Property Name="fk_endereco_id_endereco" Type="int" />
+        </EntityType>
+        <EntityType Name="pessoa_fisica">
+          <Key>
+            <PropertyRef Name="id_pessoa_fisica" />
+            <PropertyRef Name="fk_usuario_id_usuario" />
+          </Key>
+          <Property Name="id_pessoa_fisica" Type="int" Nullable="false" />
+          <Property Name="fk_usuario_id_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="publicacao">
+          <Key>
+            <PropertyRef Name="id_publicacao" />
+          </Key>
+          <Property Name="data" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="legenda" Type="text" />
+          <Property Name="midia" Type="varbinary" MaxLength="1" />
+          <Property Name="id_publicacao" Type="int" Nullable="false" />
+          <Property Name="fk_usuario_id_usuario" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'virtuarte.dbo.segue' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="segue">
+          <Property Name="fk_usuario_id_usuario" Type="int" />
+          <Property Name="fk_usuario_id_usuario_" Type="int" />
+        </EntityType>-->
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="username" Type="char" MaxLength="30" />
+          <Property Name="nome" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="senha" Type="char" MaxLength="60" />
+          <Property Name="foto_perfil" Type="varbinary" MaxLength="1" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'virtuarte.dbo.avalia' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_avalia_1" />-->
+        <Association Name="FK_bairro_2">
+          <End Role="cidade" Type="Self.cidade" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bairro" Type="Self.bairro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="id_cidade" />
+            </Principal>
+            <Dependent Role="bairro">
+              <PropertyRef Name="fk_cidade_id_cidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cidade_2">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cidade" Type="Self.cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="cidade">
+              <PropertyRef Name="fk_estado_id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'virtuarte.dbo.curte' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_curte_1" />-->
+        <Association Name="FK_endereco_2">
+          <End Role="bairro" Type="Self.bairro" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="endereco" Type="Self.endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bairro">
+              <PropertyRef Name="id_bairro" />
+            </Principal>
+            <Dependent Role="endereco">
+              <PropertyRef Name="fk_bairro_id_bairro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_interage_2">
+          <End Role="publicacao" Type="Self.publicacao" Multiplicity="0..1" />
+          <End Role="interage" Type="Self.interage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publicacao">
+              <PropertyRef Name="id_publicacao" />
+            </Principal>
+            <Dependent Role="interage">
+              <PropertyRef Name="fk_publicacao_id_publicacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organizacao_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="organizacao" Type="Self.organizacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="organizacao">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organizacao_3">
+          <End Role="endereco" Type="Self.endereco" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="organizacao" Type="Self.organizacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="endereco">
+              <PropertyRef Name="id_endereco" />
+            </Principal>
+            <Dependent Role="organizacao">
+              <PropertyRef Name="fk_endereco_id_endereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pessoa_fisica_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pessoa_fisica" Type="Self.pessoa_fisica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="pessoa_fisica">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_publicacao_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="publicacao" Type="Self.publicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="publicacao">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'virtuarte.dbo.segue' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_segue_1" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'virtuarte.dbo.segue' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_segue_2" />-->
+        <EntityContainer Name="virtuarteModelStoreContainer">
+          <EntitySet Name="bairro" EntityType="Self.bairro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cidade" EntityType="Self.cidade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="endereco" EntityType="Self.endereco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="estado" EntityType="Self.estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="interage" EntityType="Self.interage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="organizacao" EntityType="Self.organizacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pessoa_fisica" EntityType="Self.pessoa_fisica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="publicacao" EntityType="Self.publicacao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_bairro_2" Association="Self.FK_bairro_2">
+            <End Role="cidade" EntitySet="cidade" />
+            <End Role="bairro" EntitySet="bairro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cidade_2" Association="Self.FK_cidade_2">
+            <End Role="estado" EntitySet="estado" />
+            <End Role="cidade" EntitySet="cidade" />
+          </AssociationSet>
+          <AssociationSet Name="FK_endereco_2" Association="Self.FK_endereco_2">
+            <End Role="bairro" EntitySet="bairro" />
+            <End Role="endereco" EntitySet="endereco" />
+          </AssociationSet>
+          <AssociationSet Name="FK_interage_2" Association="Self.FK_interage_2">
+            <End Role="publicacao" EntitySet="publicacao" />
+            <End Role="interage" EntitySet="interage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organizacao_2" Association="Self.FK_organizacao_2">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="organizacao" EntitySet="organizacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organizacao_3" Association="Self.FK_organizacao_3">
+            <End Role="endereco" EntitySet="endereco" />
+            <End Role="organizacao" EntitySet="organizacao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pessoa_fisica_2" Association="Self.FK_pessoa_fisica_2">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="pessoa_fisica" EntitySet="pessoa_fisica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_publicacao_2" Association="Self.FK_publicacao_2">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="publicacao" EntitySet="publicacao" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="virtuarteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bairro">
+          <Key>
+            <PropertyRef Name="id_bairro" />
+          </Key>
+          <Property Name="id_bairro" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="fk_cidade_id_cidade" Type="Int32" />
+          <NavigationProperty Name="cidade" Relationship="Self.FK_bairro_2" FromRole="bairro" ToRole="cidade" />
+          <NavigationProperty Name="enderecoes" Relationship="Self.FK_endereco_2" FromRole="bairro" ToRole="endereco" />
+        </EntityType>
+        <EntityType Name="cidade">
+          <Key>
+            <PropertyRef Name="id_cidade" />
+          </Key>
+          <Property Name="nome" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="id_cidade" Type="Int32" Nullable="false" />
+          <Property Name="fk_estado_id_estado" Type="Int32" />
+          <NavigationProperty Name="bairroes" Relationship="Self.FK_bairro_2" FromRole="cidade" ToRole="bairro" />
+          <NavigationProperty Name="estado" Relationship="Self.FK_cidade_2" FromRole="cidade" ToRole="estado" />
+        </EntityType>
+        <EntityType Name="endereco">
+          <Key>
+            <PropertyRef Name="id_endereco" />
+          </Key>
+          <Property Name="logradouro" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cep" Type="Int32" />
+          <Property Name="numero" Type="Int32" />
+          <Property Name="id_endereco" Type="Int32" Nullable="false" />
+          <Property Name="complemento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fk_bairro_id_bairro" Type="Int32" />
+          <NavigationProperty Name="bairro" Relationship="Self.FK_endereco_2" FromRole="endereco" ToRole="bairro" />
+          <NavigationProperty Name="organizacaos" Relationship="Self.FK_organizacao_3" FromRole="endereco" ToRole="organizacao" />
+        </EntityType>
+        <EntityType Name="estado">
+          <Key>
+            <PropertyRef Name="id_estado" />
+          </Key>
+          <Property Name="id_estado" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="sigla" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="cidades" Relationship="Self.FK_cidade_2" FromRole="estado" ToRole="cidade" />
+        </EntityType>
+        <EntityType Name="interage">
+          <Key>
+            <PropertyRef Name="id_interacao" />
+          </Key>
+          <Property Name="fk_publicacao_id_publicacao" Type="Int32" />
+          <Property Name="fk_usuario_id_usuario" Type="Int32" />
+          <Property Name="comentario" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_interacao" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="publicacao" Relationship="Self.FK_interage_2" FromRole="interage" ToRole="publicacao" />
+        </EntityType>
+        <EntityType Name="organizacao">
+          <Key>
+            <PropertyRef Name="id_organizacao" />
+            <PropertyRef Name="fk_usuario_id_usuario" />
+          </Key>
+          <Property Name="pontuacao" Type="Int32" />
+          <Property Name="id_organizacao" Type="Int32" Nullable="false" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="valor" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="fk_usuario_id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fk_endereco_id_endereco" Type="Int32" />
+          <NavigationProperty Name="endereco" Relationship="Self.FK_organizacao_3" FromRole="organizacao" ToRole="endereco" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_organizacao_2" FromRole="organizacao" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="pessoa_fisica">
+          <Key>
+            <PropertyRef Name="id_pessoa_fisica" />
+            <PropertyRef Name="fk_usuario_id_usuario" />
+          </Key>
+          <Property Name="id_pessoa_fisica" Type="Int32" Nullable="false" />
+          <Property Name="fk_usuario_id_usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_pessoa_fisica_2" FromRole="pessoa_fisica" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="publicacao">
+          <Key>
+            <PropertyRef Name="id_publicacao" />
+          </Key>
+          <Property Name="data" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="legenda" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="midia" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="id_publicacao" Type="Int32" Nullable="false" />
+          <Property Name="fk_usuario_id_usuario" Type="Int32" />
+          <NavigationProperty Name="interages" Relationship="Self.FK_interage_2" FromRole="publicacao" ToRole="interage" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_publicacao_2" FromRole="publicacao" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="60" FixedLength="true" Unicode="false" />
+          <Property Name="foto_perfil" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="organizacaos" Relationship="Self.FK_organizacao_2" FromRole="usuario" ToRole="organizacao" />
+          <NavigationProperty Name="pessoa_fisica" Relationship="Self.FK_pessoa_fisica_2" FromRole="usuario" ToRole="pessoa_fisica" />
+          <NavigationProperty Name="publicacaos" Relationship="Self.FK_publicacao_2" FromRole="usuario" ToRole="publicacao" />
+        </EntityType>
+        <Association Name="FK_bairro_2">
+          <End Role="cidade" Type="Self.cidade" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bairro" Type="Self.bairro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cidade">
+              <PropertyRef Name="id_cidade" />
+            </Principal>
+            <Dependent Role="bairro">
+              <PropertyRef Name="fk_cidade_id_cidade" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_endereco_2">
+          <End Role="bairro" Type="Self.bairro" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="endereco" Type="Self.endereco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bairro">
+              <PropertyRef Name="id_bairro" />
+            </Principal>
+            <Dependent Role="endereco">
+              <PropertyRef Name="fk_bairro_id_bairro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cidade_2">
+          <End Role="estado" Type="Self.estado" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="cidade" Type="Self.cidade" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estado">
+              <PropertyRef Name="id_estado" />
+            </Principal>
+            <Dependent Role="cidade">
+              <PropertyRef Name="fk_estado_id_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organizacao_3">
+          <End Role="endereco" Type="Self.endereco" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="organizacao" Type="Self.organizacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="endereco">
+              <PropertyRef Name="id_endereco" />
+            </Principal>
+            <Dependent Role="organizacao">
+              <PropertyRef Name="fk_endereco_id_endereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_interage_2">
+          <End Role="publicacao" Type="Self.publicacao" Multiplicity="0..1" />
+          <End Role="interage" Type="Self.interage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="publicacao">
+              <PropertyRef Name="id_publicacao" />
+            </Principal>
+            <Dependent Role="interage">
+              <PropertyRef Name="fk_publicacao_id_publicacao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organizacao_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="organizacao" Type="Self.organizacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="organizacao">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pessoa_fisica_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="pessoa_fisica" Type="Self.pessoa_fisica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="pessoa_fisica">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_publicacao_2">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="publicacao" Type="Self.publicacao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="publicacao">
+              <PropertyRef Name="fk_usuario_id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="virtuarteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bairroes" EntityType="Self.bairro" />
+          <EntitySet Name="cidades" EntityType="Self.cidade" />
+          <EntitySet Name="enderecoes" EntityType="Self.endereco" />
+          <EntitySet Name="estadoes" EntityType="Self.estado" />
+          <EntitySet Name="interages" EntityType="Self.interage" />
+          <EntitySet Name="organizacaos" EntityType="Self.organizacao" />
+          <EntitySet Name="pessoa_fisica" EntityType="Self.pessoa_fisica" />
+          <EntitySet Name="publicacaos" EntityType="Self.publicacao" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_bairro_2" Association="Self.FK_bairro_2">
+            <End Role="cidade" EntitySet="cidades" />
+            <End Role="bairro" EntitySet="bairroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_endereco_2" Association="Self.FK_endereco_2">
+            <End Role="bairro" EntitySet="bairroes" />
+            <End Role="endereco" EntitySet="enderecoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cidade_2" Association="Self.FK_cidade_2">
+            <End Role="estado" EntitySet="estadoes" />
+            <End Role="cidade" EntitySet="cidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organizacao_3" Association="Self.FK_organizacao_3">
+            <End Role="endereco" EntitySet="enderecoes" />
+            <End Role="organizacao" EntitySet="organizacaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_interage_2" Association="Self.FK_interage_2">
+            <End Role="publicacao" EntitySet="publicacaos" />
+            <End Role="interage" EntitySet="interages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organizacao_2" Association="Self.FK_organizacao_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="organizacao" EntitySet="organizacaos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pessoa_fisica_2" Association="Self.FK_pessoa_fisica_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="pessoa_fisica" EntitySet="pessoa_fisica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_publicacao_2" Association="Self.FK_publicacao_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="publicacao" EntitySet="publicacaos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="virtuarteModelStoreContainer" CdmEntityContainer="virtuarteEntities">
+          <EntitySetMapping Name="bairroes">
+            <EntityTypeMapping TypeName="virtuarteModel.bairro">
+              <MappingFragment StoreEntitySet="bairro">
+                <ScalarProperty Name="id_bairro" ColumnName="id_bairro" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="fk_cidade_id_cidade" ColumnName="fk_cidade_id_cidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cidades">
+            <EntityTypeMapping TypeName="virtuarteModel.cidade">
+              <MappingFragment StoreEntitySet="cidade">
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="id_cidade" ColumnName="id_cidade" />
+                <ScalarProperty Name="fk_estado_id_estado" ColumnName="fk_estado_id_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enderecoes">
+            <EntityTypeMapping TypeName="virtuarteModel.endereco">
+              <MappingFragment StoreEntitySet="endereco">
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id_endereco" ColumnName="id_endereco" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="fk_bairro_id_bairro" ColumnName="fk_bairro_id_bairro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadoes">
+            <EntityTypeMapping TypeName="virtuarteModel.estado">
+              <MappingFragment StoreEntitySet="estado">
+                <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="sigla" ColumnName="sigla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="interages">
+            <EntityTypeMapping TypeName="virtuarteModel.interage">
+              <MappingFragment StoreEntitySet="interage">
+                <ScalarProperty Name="fk_publicacao_id_publicacao" ColumnName="fk_publicacao_id_publicacao" />
+                <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="id_interacao" ColumnName="id_interacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="organizacaos">
+            <EntityTypeMapping TypeName="virtuarteModel.organizacao">
+              <MappingFragment StoreEntitySet="organizacao">
+                <ScalarProperty Name="pontuacao" ColumnName="pontuacao" />
+                <ScalarProperty Name="id_organizacao" ColumnName="id_organizacao" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
+                <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+                <ScalarProperty Name="fk_endereco_id_endereco" ColumnName="fk_endereco_id_endereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pessoa_fisica">
+            <EntityTypeMapping TypeName="virtuarteModel.pessoa_fisica">
+              <MappingFragment StoreEntitySet="pessoa_fisica">
+                <ScalarProperty Name="id_pessoa_fisica" ColumnName="id_pessoa_fisica" />
+                <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="publicacaos">
+            <EntityTypeMapping TypeName="virtuarteModel.publicacao">
+              <MappingFragment StoreEntitySet="publicacao">
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="legenda" ColumnName="legenda" />
+                <ScalarProperty Name="midia" ColumnName="midia" />
+                <ScalarProperty Name="id_publicacao" ColumnName="id_publicacao" />
+                <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="virtuarteModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="foto_perfil" ColumnName="foto_perfil" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

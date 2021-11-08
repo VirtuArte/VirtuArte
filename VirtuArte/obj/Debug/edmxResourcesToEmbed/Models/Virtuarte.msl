@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="virtuarteModelStoreContainer" CdmEntityContainer="virtuarteEntities">
+    <EntitySetMapping Name="bairroes">
+      <EntityTypeMapping TypeName="virtuarteModel.bairro">
+        <MappingFragment StoreEntitySet="bairro">
+          <ScalarProperty Name="id_bairro" ColumnName="id_bairro" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="fk_cidade_id_cidade" ColumnName="fk_cidade_id_cidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cidades">
+      <EntityTypeMapping TypeName="virtuarteModel.cidade">
+        <MappingFragment StoreEntitySet="cidade">
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="id_cidade" ColumnName="id_cidade" />
+          <ScalarProperty Name="fk_estado_id_estado" ColumnName="fk_estado_id_estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="enderecoes">
+      <EntityTypeMapping TypeName="virtuarteModel.endereco">
+        <MappingFragment StoreEntitySet="endereco">
+          <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="id_endereco" ColumnName="id_endereco" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="fk_bairro_id_bairro" ColumnName="fk_bairro_id_bairro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="estadoes">
+      <EntityTypeMapping TypeName="virtuarteModel.estado">
+        <MappingFragment StoreEntitySet="estado">
+          <ScalarProperty Name="id_estado" ColumnName="id_estado" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="sigla" ColumnName="sigla" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="interages">
+      <EntityTypeMapping TypeName="virtuarteModel.interage">
+        <MappingFragment StoreEntitySet="interage">
+          <ScalarProperty Name="fk_publicacao_id_publicacao" ColumnName="fk_publicacao_id_publicacao" />
+          <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+          <ScalarProperty Name="comentario" ColumnName="comentario" />
+          <ScalarProperty Name="id_interacao" ColumnName="id_interacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="organizacaos">
+      <EntityTypeMapping TypeName="virtuarteModel.organizacao">
+        <MappingFragment StoreEntitySet="organizacao">
+          <ScalarProperty Name="pontuacao" ColumnName="pontuacao" />
+          <ScalarProperty Name="id_organizacao" ColumnName="id_organizacao" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+          <ScalarProperty Name="fk_endereco_id_endereco" ColumnName="fk_endereco_id_endereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pessoa_fisica">
+      <EntityTypeMapping TypeName="virtuarteModel.pessoa_fisica">
+        <MappingFragment StoreEntitySet="pessoa_fisica">
+          <ScalarProperty Name="id_pessoa_fisica" ColumnName="id_pessoa_fisica" />
+          <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="publicacaos">
+      <EntityTypeMapping TypeName="virtuarteModel.publicacao">
+        <MappingFragment StoreEntitySet="publicacao">
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="legenda" ColumnName="legenda" />
+          <ScalarProperty Name="midia" ColumnName="midia" />
+          <ScalarProperty Name="id_publicacao" ColumnName="id_publicacao" />
+          <ScalarProperty Name="fk_usuario_id_usuario" ColumnName="fk_usuario_id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuarios">
+      <EntityTypeMapping TypeName="virtuarteModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="foto_perfil" ColumnName="foto_perfil" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

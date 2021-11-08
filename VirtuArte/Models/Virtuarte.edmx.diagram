@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="16cbed88fb804058813503efc6a98123" Name="Diagram1">
+        <EntityTypeShape EntityType="virtuarteModel.bairro" Width="1.5" PointX="1.5" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.cidade" Width="1.5" PointX="1.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.endereco" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.estado" Width="1.5" PointX="4.375" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.interage" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.organizacao" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.pessoa_fisica" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.publicacao" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="virtuarteModel.usuario" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="virtuarteModel.FK_bairro_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_endereco_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_cidade_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_organizacao_3" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_interage_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_organizacao_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_pessoa_fisica_2" ManuallyRouted="false" />
+        <AssociationConnector Association="virtuarteModel.FK_publicacao_2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
