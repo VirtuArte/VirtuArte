@@ -7,7 +7,7 @@
     <img class="vw-100"src="~/fonts/img/quadrados_home.png" alt="Quadrados Coloridos" />
 </div>
 
-<section id="about">
+<section id="about" class="mt-5 pt-5">
     <div class="d-flex gap-3 mt-5">
         <img class="mockup-home" src="~/fonts/img/mockup_home.png" alt="MockUp Tela VirtuArte">
         <div class="about-1 d-flex flex-column justify-content-center">
@@ -64,7 +64,56 @@
                             <div class="modal-option">
                                 <h4>NÃO POSSUI CADASTRO?</h4>
                                 <div class="button d-flex justify-content-center mb-2 mt-4">
-                                    <button class="bg-blue btn btn-form px-4" type="button">Cadastre-se</button>
+                                    <button class="bg-blue btn btn-form px-4" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropLogon">Cadastre-se</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="background-style-down"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logon -->
+    <div class="modal fade modal-logon" id="staticBackdropLogon" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body p-0 row">
+                    <div class="col-7 d-flex align-items-center justify-content-center">
+                        <div class="container ms-5 me-5">
+                            <div class="d-flex">
+                                <img src="~/fonts/img/logo.png" class="mx-auto mb-5 img-form" alt="Logo VirtuArte">
+                            </div>
+                            <form action="" method="post">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="floatingLoginUsername" placeholder="name@example.com">
+                                    <label for="floatingLoginUsername">E-mail ou Nome de Usuário</label>
+                                </div>
+                                <div class="form-floating d-flex position-relative">
+                                    <input type="password" class="form-control" id="floatingLoginPassword" placeholder="Password">
+                                    <label for="floatingLoginPassword">Senha</label>
+                                    <span class="input-group-text position-absolute h-100 end-0" id="basic-addon2" onclick="password_show_hide()">
+                                        <i class="glyphicon glyphicon-eye-close me-2" id="show_eye"></i>
+                                        <i class="glyphicon glyphicon-eye-open me-2 d-none" id="hide_eye"></i>
+                                    </span>
+                                </div>
+                                <div class="button d-flex justify-content-center mb-2 mt-4">
+                                    <button class="bg-blue btn btn-form" type="submit">Entrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-5 p-0 position-relative right-config">
+                        <div class="background-style-up"></div>
+                        <div class="background-span">
+                            <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="container d-flex justify-content-center top-40 position-absolute m-auto">
+                            <div class="modal-option">
+                                <h4>JÁ POSSUI CADASTRO?</h4>
+                                <div class="button d-flex justify-content-center mb-2 mt-4">
+                                    <button class="bg-blue btn btn-form px-4" type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdropLogin">Entrar</button>
                                 </div>
                             </div>
                         </div>

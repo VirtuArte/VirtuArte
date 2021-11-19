@@ -132,14 +132,17 @@ header .justify-items-center {
     border-radius: 20px;
 }
 
-.header-decoration {
+.header-decoration,
+a.header-decoration {
     color: black;
     text-decoration: none;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
-.header-decoration:hover {
-    color: var(--purple);
+.header-decoration:hover,
+a.header-decoration:hover {
+    color: var(--purple) !important;
 }
 
 .footer {
@@ -198,7 +201,8 @@ span.input-group-text{
     position: relative;
 }
   
-.modal-login .background-span{
+.modal-login .background-span,
+.modal-logon .background-span{
     background-color: #A25CBF;
     height: 100%;
     width: 100%;
