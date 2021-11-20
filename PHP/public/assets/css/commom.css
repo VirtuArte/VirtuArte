@@ -44,6 +44,10 @@ header .justify-items-center{
     color: white;
 }
 
+.bg-gray{
+    background-color: var(--gray-background);
+}
+
 /* footer */
 footer hr{
     background-color: white;

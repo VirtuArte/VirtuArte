@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -12,8 +16,10 @@
     <link rel="stylesheet" href="/assets/css/commom.css">
   </head>
   <body>
+    <?php if(!isset($_SESSION['usersId'])): ?>
     <header>
-      <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+      <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <!-- class fixed-top -->
         <div class="container justify-content-between">
           <a class="navbar-brand" href="/home">
             <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
@@ -39,15 +45,22 @@
                 </li>
               </ul>
               <div class="button d-flex justify-content-end mb-2 mt-2">
-                <button class="bg-purple" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropLogin">Entrar</button>
+                <button class="bg-purple" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdropLogin">
+                  <a href="/user/login" class="text-white nav-link">Entrar</a>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </nav>
-    </header>    
+    </header>
+    <?php else: ?>
+      <div>oi</div> 
+      <a href="/user/logout" class="nav-link">Sair</a>
+    <?php endif; ?>   
 
     <?php
+      include_once '../Application/helpers/session_helper.php';
       require '../Application/autoload.php';
 
       use Application\core\App;

@@ -7,6 +7,11 @@ use PDO;
 class Users
 {
   /** Poderiamos ter atributos aqui */
+  private $db;
+  
+  public function __construct(){
+    $this->db = new Database;
+  }
 
   /**
   * Este método busca todos os usuários armazenados na base de dados
@@ -37,44 +42,48 @@ class Users
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  //Find user by email or username
   public function findUserByEmailOrUsername($email, $username){
-    $result = $conn->executeQuery('SELECT * FROM usuario WHERE username = :username OR email = :email', array(
-      ':username' => $username,
-      ':email' => $email,
-    ));
-    // $this->db->query('SELECT * FROM users WHERE usersUid = :username OR usersEmail = :email');
-    // $this->db->bind(':username', $username);
-    // $this->db->bind(':email', $email);
+    $conn = new Database();
 
-    // $row = $this->db->single();
+    $conn->query('SELECT * FROM usuario WHERE username = :username OR email = :email');
+    $conn->bind(':username', $username);
+    $conn->bind(':email', $email);
 
-    //Check row
-    if($result->rowCount() > 0){
-        return true;
+    $row = $conn->single();
+
+    // Check row
+    if($conn->rowCount() > 0){
+        return $row;
     }else{
         return false;
     }
-    }
+  }
 
   //Register User
   public function register($data){
     $conn = new Database();
-    $result = $conn->executeQuery('INSERT INTO usuario (username, email, nome, senha, foto_perfil) VALUES (:username, :email, :nome, :senha, :foto_perfil)', array(
-      ':username'       => $data['username'],
-      ':email'          => $data['email'],
-      ':nome'           => $data['nome'],
-      ':senha'          => $data['senha'],
-      ':foto_perfil'    => $data['foto_perfil']
-    ));
+
+    $conn->query('INSERT INTO usuario (username, email, nome, senha) VALUES (:username, :email, :nome, :senha)');
+    // bind values
+    $conn->bind(':username', $data['username']);
+    $conn->bind(':email', $data['email']);
+    $conn->bind(':nome', $data['nome']);
+    $conn->bind(':senha', $data['senha']);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
-
-  //Login user
-  public function login($nameOrEmail, $password){
-    $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
-
+  
+  public function login($nameOrEmail, $password, $row){
     if($row == false) return false;
 
-    $hashedPassword = $row->usersPwd;
+    $hashedPassword = $row->senha;
     if(password_verify($password, $hashedPassword)){
         return $row;
     }else{

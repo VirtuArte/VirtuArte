@@ -39,6 +39,10 @@ a.header-decoration:hover {
 }
 
 /* modals */
+.min-vh-75 {
+    min-height: 75vh !important;
+}
+
 .form-control, span.input-group-text{
     border-radius: 0.625rem;
     background: none !important;
@@ -58,8 +62,7 @@ span.input-group-text{
     position: relative;
 }
 
-.modal-login .background-span,
-.modal-logon .background-span{
+.background-form{
     background-color: #A25CBF;
     height: 100%;
     width: 100%;
