@@ -19,7 +19,7 @@ class User extends Controller
   public function index()
   {
     $Users = $this->model('Users'); // é retornado o model Users()
-    $data = $Users::findAll();
+    $data = $Users->findAll();
     $this->view('user/index', ['users' => $data]);
   }
 
@@ -44,7 +44,7 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
-      $data = $Users::findById($id);
+      $data = $Users->findById($id);
       $this->view('user/show', ['user' => $data]);
     } else {
       $this->pageNotFound();
@@ -100,7 +100,7 @@ class User extends Controller
     $Users = $this->model('Users');
 
     //User with the same email or password already exists
-    if ($Users::findUserByEmailOrUsername($data['email'], $data['username'])) {
+    if ($Users->findUserByEmailOrUsername($data['email'], $data['username'])) {
       flash("register", "E-mail ou Nome de Usuário já cadastrados.");
       $this->view('user/signup');
     }
@@ -111,7 +111,7 @@ class User extends Controller
 
 
     // Register User
-    if ($Users::register($data)) {
+    if ($Users->register($data)) {
       $this->view('user/login');
     } else {
       die("Oops... Algo de errado aconteceu.");
@@ -138,10 +138,10 @@ class User extends Controller
     $Users = $this->model('Users');
 
     // Check for user/email
-    if ($Users::findUserByEmailOrUsername($data['name/email'], $data['name/email'])) {
+    if ($Users->findUserByEmailOrUsername($data['name/email'], $data['name/email'])) {
       //User Found
-      $row = $Users::findUserByEmailOrUsername($data['name/email'], $data['name/email']);
-      $loggedInUser = $Users::login($data['name/email'], $data['usersPwd'], $row);
+      $row = $Users->findUserByEmailOrUsername($data['name/email'], $data['name/email']);
+      $loggedInUser = $Users->login($data['name/email'], $data['usersPwd'], $row);
       if ($loggedInUser) {
         //Create session
         $this->createUserSession($loggedInUser);
@@ -175,14 +175,14 @@ class User extends Controller
   public function feed()
   {
     $Users = $this->model('Users'); // é retornado o model Users()
-    $data = $Users::findAll();
+    $data = $Users->findAll();
     $this->view('user/feed', ['users' => $data]);
   }
 
   public function chatbot()
   {
     $Users = $this->model('Users'); // é retornado o model Users()
-    $data = $Users::findAll();
+    $data = $Users->findAll();
 
     $conn = mysqli_connect("localhost", "virtuarteuser", "virtuartepassword", "virtuarte") or die("Database Error");
 
