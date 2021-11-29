@@ -13,8 +13,8 @@
           <tbody>
             <?php foreach ($data['user'] as $user) { ?>
             <tr>
-              <td><?= $user['id'] ?></td>
-              <td><?= $user['name'] ?></td>
+              <td><?= $user['id_usuario'] ?></td>
+              <td><?= $user['nome'] ?></td>
             </tr>
             <?php }?>
           </tbody>
