@@ -64,7 +64,8 @@
         <div class="form">
           <div class="bot-inbox inbox">
             <div class="icon">
-              <i class="fas fa-user"></i>
+              <img src="./assets/img/vitu.gif" alt="">
+              <!-- <i class="fas fa-user"></i> -->
             </div>
             <div class="msg-header">
               <p>Olá, eu sou o Vitu! Em que posso te ajudar?</p>
@@ -140,30 +141,74 @@
       // })
 
       $(document).ready(function(){
+        $nivel = $("#nivel").val();
         $("#send-btn").on("click", function(){
           $value = $("#data").val();
           $msg = '<div class="user-inbox inbox"><div class="msg-header"><p class="text-break">'+ $value +'</p></div></div>';
           $(".form").append($msg);
           $("#data").val('');
-          
-          $nivel = $("#nivel").val();
+
           $nivel++;
-          
           $("#nivel").val($nivel);
+
+          $estado       = '';
+          $cidade       = '';
+          $preferencia  = '';
+
+          if($nivel == 2){
+            $estado = $value;
+          }
+          if($nivel == 3){
+            $cidade = $value;
+          }
+          if($nivel == 4){
+            $preferencia = $value;
+          }
+          
           // start ajax code
           $.ajax({
             url: 'message.php',
             type: 'POST',
             // data: 'text='+$value,
-            data: {text: $value, nivel: $nivel},
+            data: {text: $value, nivel: $nivel, estado: $estado, cidade: $cidade, preferencia: $preferencia},
             success: function(result){
-              if(result == "Desculpe, não consegui te entender"){
-                console.log($nivel);
+              if(result == "Desculpe, não consegui te entender" || result == "Desculpe, não encontrei informações relacionadas"){
+                $nivel--;
+                $("#nivel").val($nivel);
+
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
               }
-              $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
-              $(".form").append($replay);
-              // when chat goes down the scroll bar automatically comes to the bottom
-              $(".form").scrollTop($(".form")[0].scrollHeight);
+              else if(result == "Desculpe, não tenho nenhuma sugestão para esse local"){
+                $nivel = 1;
+                $("#nivel").val($nivel);
+
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'. Vamos tentar novamente</p></div></div>';
+                $(".form").append($replay);
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
+              }
+              else if (result == "Foi um prazer te ajudar =D"){
+                $nivel = 0;
+                $("#nivel").val($nivel);
+
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $(".form").append($replay);
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
+              }
+              else{
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
+              }
             }
           });
         });

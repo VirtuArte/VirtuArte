@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <link rel="stylesheet" href="/assets/css/user/feed.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
@@ -7,7 +5,6 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
->>>>>>> refs/remotes/origin/main
 <header>
     <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
         <div class="container justify-content-between">
@@ -191,62 +188,4 @@
     
         <!-- COLOCAR MINI FOOTER AQUI -->
     </div>
-<<<<<<< HEAD
-=======
-
 </div>
-
-<div class="wrapper">
-    <div class="title">Simple Online Chatbot</div>
-    <div class="form">
-        <div class="bot-inbox inbox">
-            <div class="icon">
-                <i class="fas fa-user"></i>
-            </div>
-            <div class="msg-header">
-                <p>Hello there, how can I help you?</p>
-            </div>
-        </div>
-    </div>
-    <div class="typing-field">
-        <div class="input-data">
-            <input id="data" type="text" placeholder="Type something here.." required>
-            <button id="send-btn">Send</button>
-        </div>
-    </div>
-</div>
-
-<?php
-// foreach($data['users'] as $msg){
-//     var_dump($msg);
-// }
-?>
-
-<script>
-    $(document).ready(function() {
-        $("#send-btn").on("click", function() {
-            $value = $("#data").val();
-            $msg = '<div class="user-inbox inbox"><div class="msg-header"><p>' + $value + '</p></div></div>';
-            $(".form").append($msg);
-            $("#data").val('');
-
-            // var url = '/user/message';
-
-            // console.log(url);
-
-            // start ajax code
-            $.ajax({
-                url: '/user/message',
-                type: 'POST',
-                data: 'text=' + $value,
-                success: function(result) {
-                    $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p>' + result + '</p></div></div>';
-                    $(".form").append($replay);
-                    // when chat goes down the scroll bar automatically comes to the bottom
-                    $(".form").scrollTop($(".form")[0].scrollHeight);
-                }
-            });
-        });
-    });
-</script>
->>>>>>> refs/remotes/origin/main
