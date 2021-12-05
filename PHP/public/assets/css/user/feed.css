@@ -1,0 +1,177 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  padding: 6.25rem 0;
+}
+
+/* -------------novo------------- */
+:root{
+  --purple: hsl(282, 44%, 55%);
+  --blue: hsl(183, 83%, 45%);
+  --soft-black: hsl(192, 21%, 9%); 
+  --gray: hsl(0, 0%, 46%);
+}
+
+header .navbar-nav li{
+    margin: 0 2rem;
+    text-transform: uppercase;
+}
+
+header .button button{
+    width: 6.5rem;
+    height: 2.5rem;
+    border-radius: 3.125rem;
+    border: none;
+    transition: all 0.2s;
+}
+
+header .button button:hover{
+    background-color: var(--blue);
+}
+
+header .navbar-expand-md div.offcanvas{
+    flex-grow: 0.685;
+}
+
+header .justify-items-center{
+    justify-items: center;
+}
+
+.bg-purple{
+    background-color: var(--purple);
+    color: white;
+}
+
+.profile, .chatbot, .suggestions {
+  border-radius: 1rem;
+  box-shadow: 0 0 0.5em gray;
+}
+
+.name-profile h3 {
+  color: var(--soft-black);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.name-profile h4 {
+  color: var(--gray);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.score-profile h4 {
+  color: var(--gray);
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.score-profile p {
+  color: var(--soft-black);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.navegation-profile a {
+  text-decoration: none;
+  color: var(--soft-black);
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.navegation-profile a:hover {
+  text-decoration: none;
+  color: var(--purple);
+}
+
+.title-suggestions h3 {
+  color: var(--soft-black);
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.suggestions h4 {
+  color: var(--soft-black);
+  font-weight: 400;
+  font-size: 1.6rem;
+}
+
+.suggestions p {
+  color: var(--gray);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.suggestions .follow {
+  color: var(--purple);
+}
+
+
+@media (max-width: 768px) {
+  footer .navbar-nav.flex-row{
+      flex-direction: column !important;
+      list-style: none;
+  }
+} 
