@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/css/commom.css">
+    <link rel="stylesheet" href="/assets/css/user/chatbot.css">
   </head>
   <body>
     <?php if(!isset($_SESSION['usersId'])): ?>
@@ -57,6 +58,27 @@
     <?php else: ?>
       <div>oi</div> 
       <a href="/user/logout" class="nav-link">Sair</a>
+      <?php $nivelChat = 0 ?>
+      <div class="wrapper">
+        <div class="title">Simple Online Chatbot</div>
+        <div class="form">
+          <div class="bot-inbox inbox">
+            <div class="icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="msg-header">
+              <p>Olá, eu sou o Vitu! Em que posso te ajudar?</p>
+              <input type="text" id="nivel" value="<?= $nivelChat ?>">
+            </div>
+          </div>
+        </div>
+        <div class="typing-field">
+          <div class="input-data">
+            <input id="data" type="text" placeholder="Type something here.." required>
+            <button id="send-btn">Send</button>
+          </div>
+        </div>
+      </div>
     <?php endif; ?>   
 
     <?php
@@ -105,5 +127,48 @@
 
     <script src="/assets/js/jquery.slim.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- <script src="/assets/js/user/chatbot.js"></script> -->
+
+    <script>
+      // var input = document.getElementById('data');
+
+      // input.addEventListener('focus', () => {
+
+      // })
+
+      $(document).ready(function(){
+        $("#send-btn").on("click", function(){
+          $value = $("#data").val();
+          $msg = '<div class="user-inbox inbox"><div class="msg-header"><p class="text-break">'+ $value +'</p></div></div>';
+          $(".form").append($msg);
+          $("#data").val('');
+          
+          $nivel = $("#nivel").val();
+          $nivel++;
+          
+          $("#nivel").val($nivel);
+          // start ajax code
+          $.ajax({
+            url: 'message.php',
+            type: 'POST',
+            // data: 'text='+$value,
+            data: {text: $value, nivel: $nivel},
+            success: function(result){
+              if(result == "Desculpe, não consegui te entender"){
+                console.log($nivel);
+              }
+              $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+              $(".form").append($replay);
+              // when chat goes down the scroll bar automatically comes to the bottom
+              $(".form").scrollTop($(".form")[0].scrollHeight);
+            }
+          });
+        });
+      });
+    </script>
+
   </body>
 </html>

@@ -1,12 +1,17 @@
 <?php
 // connecting to database
-echo 'do public';
 $conn = mysqli_connect("localhost", "virtuarteuser", "virtuartepassword", "virtuarte") or die("Database Error");
 
 // getting user message through ajax
 $getMesg = mysqli_real_escape_string($conn, $_POST['text']);
 
 //checking user query to database query
+
+if($_POST['nivel'] == 5){
+    $var = $_POST['nivel'] - 2;
+    echo $var;
+}
+
 $check_data = "SELECT nome FROM usuario WHERE email LIKE '%$getMesg%'";
 $run_query = mysqli_query($conn, $check_data) or die("Error");
 
@@ -18,7 +23,7 @@ if(mysqli_num_rows($run_query) > 0){
     $replay = $fetch_data['nome'];
     echo $replay;
 }else{
-    echo "Sorry can't be able to understand you!";
+    echo "Desculpe, não consegui te entender";
 }
 
 ?>
