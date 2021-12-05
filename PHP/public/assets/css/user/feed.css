@@ -2,7 +2,7 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 
 a.navbar-brand {
   white-space: normal;
@@ -21,7 +21,8 @@ a {
   border-color: #1861ac;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
@@ -46,7 +47,7 @@ html {
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
 
 button.accept-policy {
@@ -68,44 +69,51 @@ body {
 }
 
 /* -------------novo------------- */
-:root{
+:root {
   --purple: hsl(282, 44%, 55%);
   --blue: hsl(183, 83%, 45%);
-  --soft-black: hsl(192, 21%, 9%); 
+  --soft-black: hsl(192, 21%, 9%);
   --gray: hsl(0, 0%, 46%);
+  --soft-gray: hsl(0, 0%, 98%);
 }
 
-header .navbar-nav li{
-    margin: 0 2rem;
-    text-transform: uppercase;
+.general{
+    background-color: var(--soft-gray);
 }
 
-header .button button{
-    width: 6.5rem;
-    height: 2.5rem;
-    border-radius: 3.125rem;
-    border: none;
-    transition: all 0.2s;
+header .navbar-nav li {
+  margin: 0 2rem;
+  text-transform: uppercase;
 }
 
-header .button button:hover{
-    background-color: var(--blue);
+header .button button {
+  width: 6.5rem;
+  height: 2.5rem;
+  border-radius: 3.125rem;
+  border: none;
+  transition: all 0.2s;
 }
 
-header .navbar-expand-md div.offcanvas{
-    flex-grow: 0.685;
+header .button button:hover {
+  background-color: var(--blue);
 }
 
-header .justify-items-center{
-    justify-items: center;
+header .navbar-expand-md div.offcanvas {
+  flex-grow: 0.685;
 }
 
-.bg-purple{
-    background-color: var(--purple);
-    color: white;
+header .justify-items-center {
+  justify-items: center;
 }
 
-.profile, .chatbot, .suggestions {
+.bg-purple {
+  background-color: var(--purple);
+  color: white;
+}
+
+.profile,
+.chatbot,
+.suggestions {
   border-radius: 1rem;
   box-shadow: 0 0 0.5em gray;
 }
@@ -169,9 +177,73 @@ header .justify-items-center{
 }
 
 
+.dates {
+    background-color: white;
+    min-width: 30%;
+    width: fit-content;
+    border-radius: 0.7rem;
+    padding: 0.6rem 1rem 0.2rem 1rem;
+    line-height: 0.7rem;
+    top: 3rem;
+    left: 2rem;
+    z-index: 1;
+    box-shadow: 0px 0px 3.13074px 0.782686px rgba(0, 0, 0, 0.25);
+}
+
+.dates h4 {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.dates p {
+    font-weight: 300;
+    font-size: 1.1;
+    color: var(--gray);
+}
+
+.background img {
+    border-radius: 0.625rem;
+}
+
+.legend {
+    left: 0 !important;
+    right: 0 !important;
+    /* bottom: 3.5rem !important; */
+    top: 18.6rem;
+    width: 100%;
+}
+
+.legend p {
+    background-color: black;
+    opacity: 0.6;
+    padding: 1.5rem 0.4rem 1rem !important;
+    border-radius: 0.8rem;
+}
+
+.interaction {
+  float: right !important;
+  top: 25rem;
+  left: 35rem;
+}
+
+.interaction button {
+    border-radius: 0.5rem;
+    border: none;
+    background-color: white;
+    box-shadow: 0px 0px 3.13074px 0.782686px rgba(0, 0, 0, 0.25);
+}
+
+#btn-like {
+    padding: 0.5rem 0.5rem;
+}
+
+#btn-coment {
+    padding: 0.7rem 0.8rem;
+}
+
 @media (max-width: 768px) {
-  footer .navbar-nav.flex-row{
-      flex-direction: column !important;
-      list-style: none;
+  footer .navbar-nav.flex-row {
+    flex-direction: column !important;
+    list-style: none;
   }
-} 
+}
