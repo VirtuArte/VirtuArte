@@ -179,6 +179,17 @@ class User extends Controller
     $this->view('user/feed', ['users' => $data]);
   }
 
+  public function message()
+  {
+    if(isset($_POST['text'])){
+      $mensagem = $_POST['text'];
+  
+      $Users = $this->model('Users'); // é retornado o model Users()
+      $data = $Users->bot($mensagem);
+      $this->view('user/message', ['users' => $data]);
+    }
+  }
+
   public function chatbot()
   {
     $Users = $this->model('Users'); // é retornado o model Users()
