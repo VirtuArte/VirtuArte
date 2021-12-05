@@ -81,6 +81,11 @@ body {
     background-color: var(--soft-gray);
 }
 
+input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
 header .navbar-nav li {
   margin: 0 2rem;
   text-transform: uppercase;
@@ -142,6 +147,13 @@ header .justify-items-center {
   font-weight: 400;
 }
 
+.navegation img {
+    border: 1px solid #FFFFFF;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 100%;
+}
+
 .navegation-profile a {
   text-decoration: none;
   color: var(--soft-black);
@@ -152,6 +164,41 @@ header .justify-items-center {
 .navegation-profile a:hover {
   text-decoration: none;
   color: var(--purple);
+}
+
+
+.search input {
+    width: 80%;
+    height: 2.5rem;
+    border-radius: 0.8rem;
+    padding-left: 2rem;
+    border: 1px solid var(--gray);
+}
+
+.little-menu button{
+    background-color: white;
+    color: var(--soft-black);
+    font-size: 1.4rem;
+    border: none;
+}
+
+.dropdown-toggle::after {
+    color: var(--purple);
+}
+
+.little-menu button:hover, button:focus, button:active {
+    background-color: white;
+    color: var(--soft-black);
+    border: white;
+}
+
+.little-menu li {
+    color: var(--soft-black);
+    font-size: 1.2rem;
+}
+
+.little-menu li a {
+    text-decoration: none;
 }
 
 .title-suggestions h3 {
@@ -175,7 +222,6 @@ header .justify-items-center {
 .suggestions .follow {
   color: var(--purple);
 }
-
 
 .dates {
     background-color: white;
