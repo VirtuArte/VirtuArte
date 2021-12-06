@@ -266,6 +266,32 @@ button.accordion-button.collapsed::after {
     background-image: url(/assets/img/setinha.png) !important;
 }
 
+.nome {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: fit-content;
+  margin-left: 0.5rem;
+}
+
+.sugest {
+  justify-content: space-between;
+}
+
+.sugest2 {
+  justify-content: space-around;
+  height:100%;
+}
+
+.links{
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+.links:hover{
+  cursor: pointer;
+  color: hsl(282, 44%, 55%) !important;
+}
+
 
 .dates {
     background-color: white;
