@@ -112,7 +112,7 @@ header .justify-items-center {
 }
 
 /* aside */
-.nav-aside{
+.nav-aside {
   width: 25rem;
 }
 
@@ -178,6 +178,9 @@ header .justify-items-center {
     border-radius: 0.8rem;
     padding-left: 2rem;
     border: 1px solid var(--gray);
+    background-image: url(/assets/img/icon-search.svg);
+    background-repeat: no-repeat;
+    background-position: 97% 60%;
 }
 
 .little-menu button{
@@ -212,6 +215,16 @@ header .justify-items-center {
   font-size: 1.8rem;
 }
 
+.accordion-item {
+    border: none !important;
+    background-color: white !important;
+}
+
+.profile .container, .suggestions .container {
+    background-color: white;
+    border-radius: 1.5rem;
+}
+
 .suggestions h4 {
   color: var(--soft-black);
   font-weight: 400;
@@ -227,6 +240,32 @@ header .justify-items-center {
 .suggestions .follow {
   color: var(--purple);
 }
+
+button.accordion-button {
+    background-color: white !important;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--soft-black) !important;
+}
+
+button.accordion-button::after {
+    margin-bottom: 0.6rem;
+}
+
+button.accordion-button.collapsed {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--soft-black);
+}
+
+button.accordion-button.collapsed::after {
+    margin-top: 1rem;
+}
+
+.accordion-button::after {
+    background-image: url(/assets/img/setinha.png) !important;
+}
+
 
 .dates {
     background-color: white;

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -91,16 +91,17 @@
                 </div>
             </div>
         
-            <div class="chatbot w-25 mt-5">
+            <div class="chatbot mt-5">
                 <div class="container px-4 py-4">
                     <h3>Aqui vai o chatbot, escrevi isso só para div aparecer :</h3>
                 </div>
             </div>
         
-            <div class="suggestions w-25 mt-5">
+            <div class="suggestions mt-5">
                 <div class="container px-4 py-4">
         
                     <!-- COLOCAR LINKS NOS @'S -->
+            
                     <div class="suggestion">
                         <div class="accordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item">
