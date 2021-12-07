@@ -215,4 +215,20 @@ class User extends Controller
 
     $this->view('user/feed', ['users' => $data]);
   }
+
+  // new post
+  public function publicar()
+  {
+    //Init data
+    $data = [
+      'legenda' => trim($_POST['legend']),
+      'midia' => trim($_POST['fileDragData'])
+    ];
+
+    $Users = $this->model('Users');
+
+    $Users->newPost($data['legenda'], $data['midia']);
+
+    header('Location: /user/feed');
+  }
 }

@@ -117,4 +117,25 @@ class Users
     return $retorno;
   }
 
+  // new post
+  public function newPost($legend, $midia){
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('INSERT INTO publicacao (legenda, midia, fk_usuario_id_usuario) VALUES (:legenda, :midia, :user)');
+    // bind values
+    $conn->bind(':legenda', $legend);
+    $conn->bind(':midia', $midia);
+    $conn->bind(':user', $user);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

@@ -55,6 +55,11 @@ button.accept-policy {
   line-height: inherit;
 }
 
+.btn-secondary:focus{
+  color: rgb(18, 26, 28) !important;
+  background: none !important;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -71,10 +76,13 @@ body {
 /* -------------novo------------- */
 :root {
   --purple: hsl(282, 44%, 55%);
+  --lilac: hsl(271, 50%, 76%);
   --blue: hsl(183, 83%, 45%);
-  --soft-black: hsl(192, 21%, 9%);
+  --green: hsl(89, 55%, 72%);
+  --yellow: hsl(55, 94%, 82%);
+  --gray-background: hsl(0, 0%, 98%);
   --gray: hsl(0, 0%, 46%);
-  --soft-gray: hsl(0, 0%, 98%);
+  --soft-black: hsl(192, 21%, 9%);
 }
 
 .general{
@@ -126,6 +134,10 @@ header .justify-items-center {
 .suggestions {
   border-radius: 1rem;
   box-shadow: 0 0 0.5em gray;
+}
+
+.border-acordion{
+  border-radius: 1rem !important;
 }
 
 .name-profile h3 {
@@ -361,6 +373,89 @@ button.accordion-button.collapsed::after {
 
 #btn-coment {
     padding: 0.7rem 0.8rem;
+}
+
+/* new post */
+.modal,
+.modal p,
+.modal h1,
+.modal h2,
+.modal h3,
+.modal h4,
+.modal h5,
+.modal h6,
+.modal button {
+  font-size: 1.7rem !important;
+}
+
+.modal label{
+  font-size: 1.5rem !important;
+}
+
+.modal textarea{
+  font-size: 1.5rem;
+  padding: 1rem !important;
+  min-height: 6rem !important;
+  padding-top: 3rem !important;
+}
+
+.modal-body{
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 15rem;
+}
+
+.modal-header, 
+.modal-footer,
+.modal .select,
+.modal textarea {
+  border: none !important;
+}
+
+.dropzone.form-control{
+  border: 2px dashed var(--bs-gray-400);
+  width: 20rem;
+  height: 15rem;
+  margin: auto;
+  border-radius: 1rem;
+}
+
+.dropzone.form-control img{
+  max-width: 19rem;
+  max-height: 14rem;
+}
+
+.dropzone.form-control.hover{
+  border: 2px dashed var(--blue) !important;
+}
+
+.select.form-control label{
+  border: 1px solid var(--purple);
+  border-radius: 0.625rem;
+  padding: 0.625rem;
+  width: fit-content;
+  z-index: 2;
+  transition: 0.2s;
+}
+
+.select.form-control label:hover{
+  transform: scale(1.02);
+}
+
+.dragData,
+#previewArea{
+  display: none;
+}
+
+.btn-publish{
+  background-color: var(--lilac) !important;
+  color: white !important;
+}
+
+.btn-publish:hover{
+  background-color: var(--purple) !important;
 }
 
 @media (max-width: 992px) {

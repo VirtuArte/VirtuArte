@@ -33,7 +33,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">Abrir perfil</a></li>
-                        <li><a class="dropdown-item text-danger" href="#">Sair</a></li>
+                        <li><a class="dropdown-item text-danger" href="/user/logout">Sair</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,38 +71,87 @@
                         <div class="navegation-profile d-flex flex-column gap-4 pb-4">
                             <a class="d-flex align-items-center" href=""><img class="pe-2" src="/assets/img/icon-home.svg" alt="Ícone home"> Página inicial</a>
                             <a class="d-flex align-items-center" href=""><img class="pe-2" src="/assets/img/icon-profile.svg" alt="Ícone perfil"> Perfil</a>
-                            <a class="d-flex align-items-center" href=""><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação</a>
+                            <a class="d-flex align-items-center" href="" data-bs-toggle="modal" data-bs-target="#newPost"><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação</a>
                             <a class="d-flex align-items-center" href=""><img class="pe-2" src="/assets/img/icon-config.svg" alt="Ícone configurações">Configurações</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        
-            <div class="chatbot w-25 mt-5">
-                <div class="container px-4 py-4">
-                    <h3>Aqui vai o chatbot, escrevi isso só para div aparecer :</h3>
-                    <?php
-        // include 'chatbot.php';
-      ?>
-                </div>
 
-                <div class="suggestions mt-5">
+                <!-- Modal New Post -->
+                <div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content border-acordion p-3">
+                            <form action="/user/publicar" method="post">
+                                <div class="modal-header">
+                                    <h5 class="modal-title d-flex align-items-center" id="exampleModalLabel"><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-floating">
+                                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="legend" maxlength="550"></textarea>
+                                                <label for="floatingTextarea">Escreva uma legenda...</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupFile01" onchange="readFile(event)">
+                                                <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
+                                                    <label for="inputBanner" id="labelFile">Selecione o arquivo</label>                                
+                                                    <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readFile(event)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="previewArea" class="mt-2">
+                                        <div class="input-group my-5 dropzone dz-clickable form-control d-flex justify-content-center">
+                                            <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
+                                                <img src="" alt="" id="postPreview">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="dragData">
+                                            <input id="fileDragName" name="fileDragName">
+                                            <input id="fileDragSize" name="fileDragSize">
+                                            <input id="fileDragType" name="fileDragType">
+                                            <input id="fileDragData" name="fileDragData">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-publish">Publicar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="chatbot mt-5">
                     <div class="container px-4 py-4">
+                        <h3>Aqui vai o chatbot, escrevi isso só para div aparecer :</h3>
+                        <?php
+                            // include 'chatbot.php';
+                        ?>
+                    </div>
+                    
+                </div>
+                <div class="suggestions border-acordion mt-5">
+                    <div class="container p-0">
 
                         <!-- COLOCAR LINKS NOS @'S -->
 
                         <div class="suggestion">
-                            <div class="accordion" id="accordionPanelsStayOpenExample">
-                                <div class="accordion-item">
+                            <div class="accordion border-acordion" id="accordionPanelsStayOpenExample">
+                                <div class="accordion-item border-acordion">
                                     <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                        <button class="accordion-button border-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                             Sugestões para você
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show position-relative" aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body">
-                                            <div class="position-absolute">
-
+                                            <div>
                                                 <div class="sugest d-flex mt-2 mb-2">
                                                     <div class="sugest d-flex">
                                                         <img src="/assets/img/foto-suzana-v.svg">
@@ -234,3 +283,5 @@
             header('Location: /user/login');
         }
     ?>
+
+<script src="/assets/js/user/feed.js"></script>
