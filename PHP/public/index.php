@@ -59,27 +59,43 @@
       <div>oi</div> 
       <a href="/user/logout" class="nav-link">Sair</a>
       <?php $nivelChat = 0 ?>
-      <div class="wrapper">
-        <div class="title">Simple Online Chatbot</div>
-        <div class="form">
-          <div class="bot-inbox inbox">
-            <div class="icon">
-              <img src="./assets/img/vitu.gif" alt="">
-              <!-- <i class="fas fa-user"></i> -->
-            </div>
-            <div class="msg-header">
-              <p>Olá, eu sou o Vitu! Em que posso te ajudar?</p>
-              <input type="text" id="nivel" value="<?= $nivelChat ?>">
-            </div>
+
+      <?php 
+        if($_SERVER['REQUEST_URI'] == '/user/feed'){
+      ?>
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <div class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Converse com o Vitu
+            </button>
           </div>
-        </div>
-        <div class="typing-field">
-          <div class="input-data">
-            <input id="data" type="text" placeholder="Type something here.." required>
-            <button id="send-btn">Send</button>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="wrapper">
+              <div class="form">
+                <div class="bot-inbox inbox">
+                  <div class="icon">
+                    <img src="/assets/img/vitu-chat.png" alt="">
+                  </div>
+                  <div class="msg-header">
+                    <p class="text-break">Olá, eu sou o Vitu! Em que posso te ajudar?</p>
+                    <input type="hidden" id="nivel" value="<?= $nivelChat ?>">
+                  </div>
+                </div>
+              </div>
+              <div class="typing-field">
+                <div class="input-data">
+                  <input id="data" type="text" placeholder="Escreva aqui..." required>
+                  <button id="send-btn">Enviar</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <?php
+        }
+      ?>
     <?php endif; ?>   
 
     <?php
@@ -124,14 +140,18 @@
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
 
     <script src="/assets/js/jquery.slim.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- <script src="/assets/js/bootstrap.min.js"></script> -->
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <!-- <script src="/assets/js/user/chatbot.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
     <script>
       // var input = document.getElementById('data');
@@ -167,7 +187,7 @@
           
           // start ajax code
           $.ajax({
-            url: 'message.php',
+            url: '../../message.php',
             type: 'POST',
             // data: 'text='+$value,
             data: {text: $value, nivel: $nivel, estado: $estado, cidade: $cidade, preferencia: $preferencia},
@@ -176,7 +196,7 @@
                 $nivel--;
                 $("#nivel").val($nivel);
 
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
@@ -185,9 +205,9 @@
                 $nivel = 1;
                 $("#nivel").val($nivel);
 
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'. Vamos tentar novamente</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Vamos tentar novamente</p></div></div>';
                 $(".form").append($replay);
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
@@ -196,15 +216,15 @@
                 $nivel = 0;
                 $("#nivel").val($nivel);
 
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
                 $(".form").append($replay);
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
               }
               else{
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><i class="fas fa-user"></i></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);

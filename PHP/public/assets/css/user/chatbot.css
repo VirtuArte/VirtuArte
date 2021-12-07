@@ -23,7 +23,7 @@
     background: #ccc;
 }
 .wrapper{
-    width: 370px;
+    width: 25rem;
     background: #fff;
     border-radius: 5px;
     border: 1px solid lightgrey;
@@ -62,10 +62,9 @@
     line-height: 40px;
     border-radius: 50%;
     font-size: 18px;
-    background: #007bff;
 }
 .wrapper .form .inbox .msg-header{
-    max-width: 53%;
+    max-width: 100%;
     margin-left: 10px;
 }
 .form .inbox .msg-header p{
@@ -107,7 +106,7 @@
     transition: all 0.3s ease;
 }
 .typing-field .input-data input:focus{
-    border-color: rgba(0,123,255,0.8);
+    border-color: var(--purple);
 }
 .input-data input::placeholder{
     color: #999999;
@@ -129,8 +128,8 @@
     opacity: 0;
     pointer-events: none;
     border-radius: 3px;
-    background: #007bff;
-    border: 1px solid #007bff;
+    background: var(--lilac);
+    border: 1px solid var(--lilac);
     transform: translateY(-50%);
     transition: all 0.3s ease;
 }
@@ -139,5 +138,24 @@
     pointer-events: auto;
 }
 .typing-field .input-data button:hover{
-    background: #006fef;
+    background: var(--purple);
+}
+
+.accordion-button {
+    position: relative;
+    /* display: flex; */
+    align-items: center;
+    width: 25rem !important;
+    padding: 1rem 1.25rem;
+    /* font-size: 1rem; */
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    overflow-anchor: none;
+}
+
+.accordion{
+    width: 25rem !important;
 }

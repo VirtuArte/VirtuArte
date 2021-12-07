@@ -5,19 +5,16 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<?php if(isset($_SESSION['usersId'])){ ?>
 <header>
     <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
         <div class="container justify-content-between">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+            <a class="navbar-brand" href="/">
                 <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button> -->
             <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
@@ -25,20 +22,8 @@
                 </div>
                 <div class="offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
                     <input type="search" id="bar-search" name="bar-search" placeholder="Buscar no VirtuArte">
-                    <!-- ARRUMAR LUPA -->
-                    <!-- <button><img src="img-feed/icon-search.svg" alt=""></button> -->
                 </div>
             </div>
-
-            <!-- <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                  Luna Maria
-                </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><button class="dropdown-item" type="button">Abrir perfil</button></li>
-                  <li><button class="dropdown-item" type="button">Sair</button></li>
-                </ul>
-              </div> -->
             <div class="nav-right d-flex align-items-center">
                 <img src="/assets/img/foto-luna-nav.png" alt="Foto Luna Maria">
                 <div class="dropdown">
@@ -93,6 +78,9 @@
             <div class="chatbot w-25 mt-5">
                 <div class="container px-4 py-4">
                     <h3>Aqui vai o chatbot, escrevi isso só para div aparecer :</h3>
+                    <?php
+        // include 'chatbot.php';
+      ?>
                 </div>
             </div>
         
@@ -218,8 +206,16 @@
                     </div>
                 </div>
             </div>
+
+            
         
             <!-- COLOCAR MINI FOOTER AQUI -->
         </div>
     
     </div>
+    <?php 
+        }
+        else{
+            header('Location: /user/login');
+        }
+    ?>
