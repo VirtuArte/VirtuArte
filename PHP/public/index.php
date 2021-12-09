@@ -56,8 +56,47 @@
       </nav>
     </header>
     <?php else: ?>
-      <div>oi</div> 
-      <a href="/user/logout" class="nav-link">Sair</a>
+      <link rel="stylesheet" href="/assets/css/user/feed.css">
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+      <header>
+        <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+          <div class="container justify-content-between">
+            <a class="navbar-brand" href="/">
+              <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="search offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
+                <input type="search" id="bar-search" name="bar-search" placeholder="Buscar no VirtuArte">
+              </div>
+            </div>
+            <div class="nav-right d-flex align-items-center">
+              <img src="/assets/img/foto-luna-nav.png" alt="Foto Luna Maria">
+              <div class="dropdown little-menu">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?php 
+                    $name = explode(" ", $_SESSION['usersName']);
+                    $firstName = $name[0];
+                    $lastName = sizeof($name) > 1 ? $name[sizeof($name) - 1] : ''
+                   ?>
+                  <?= $name[0] ?>
+                  <?= sizeof($name) > 1 ? $name[sizeof($name) - 1] : '' ?>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="/user/profile/<?= (int)$_SESSION['usersId'] ?>">Abrir perfil</a></li>
+                  <li><a class="dropdown-item text-danger" href="/user/logout">Sair</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
       <?php $nivelChat = 0 ?>
 
       <?php 

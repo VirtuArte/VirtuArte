@@ -40,12 +40,15 @@ class User extends Controller
    * não seja informado, é chamado a view de página não encontrada.
    * @param  int   $id   Identificado do usuário.
    */
-  public function show($id = null)
+  public function profile($id = null)
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
       $data = $Users->findById($id);
-      $this->view('user/show', ['user' => $data]);
+      $posts = $Users->findPostsById($id);
+      $suggestion = $Users->suggestionUser();
+      $following = $Users->following();
+      $this->view('user/profile', ['user' => $data, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following]);
     } else {
       $this->pageNotFound();
     }
@@ -160,7 +163,7 @@ class User extends Controller
     $_SESSION['usersId'] = $user->id_usuario;
     $_SESSION['usersName'] = $user->nome;
     $_SESSION['usersEmail'] = $user->email;
-    redirect("../user/feed");
+    // redirect("../user/feed");
   }
 
   public function logout()
@@ -217,7 +220,7 @@ class User extends Controller
   }
 
   // new post
-  public function publicar()
+  public function publish()
   {
     //Init data
     $data = [
@@ -230,5 +233,28 @@ class User extends Controller
     $Users->newPost($data['legenda'], $data['midia']);
 
     header('Location: /user/feed');
+  }
+
+  // follow
+  public function follow($id = null, $status = null)
+  {
+    if (is_numeric($id)) {
+      $Users = $this->model('Users');
+      
+      if($status == 'follow'){
+        $Users->follow($id);
+      }
+      else if($status = 'unfollow'){
+        $Users->unfollow($id);
+      }
+
+      if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
+      }
+
+      // $this->view('user/profile', ['user' => $data, 'post' => $posts, 'suggestion' => $suggestion]);
+    } else {
+      // $this->pageNotFound();
+    }
   }
 }

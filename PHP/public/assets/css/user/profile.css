@@ -1,0 +1,124 @@
+.nome {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin-left: 0.5rem;
+  }
+
+  .profilePic{
+    border-radius: 100%;
+  }
+  
+  .perfil {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .perfil2{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .container2{
+    min-height: 100vh;
+  }
+  
+  .align-center {
+    justify-content: center;    
+  }
+  
+  .bg-white{
+    background-color: white;
+  }
+  
+  .lista {
+    list-style: none !important;
+    justify-content: justify;
+  }
+  
+  .links{
+    text-decoration: none !important;
+    transition: all 0.2s;
+  }
+  .links:hover{
+    cursor: pointer;
+    color: hsl(282, 44%, 55%) !important;
+  }
+  
+  .dates {
+  background-color: white;
+  min-width: 30%;
+  width: fit-content;
+  border-radius: 0.7rem;
+  padding: 0.6rem 1rem 0.2rem 1rem;
+  line-height: 0.7rem;
+  top: 3rem;
+  left: 2rem;
+  z-index: 1;
+  box-shadow: 0px 0px 3.13074px 0.782686px rgba(0, 0, 0, 0.25);
+  }
+  
+  .dates img {
+  width: 4rem;
+  }
+  
+  .dates h4 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  }
+  
+  .dates p {
+  font-weight: 300;
+  font-size: 1.1;
+  color: var(--gray);
+  }
+  
+  .background img {
+  border-radius: 0.625rem;
+  }
+  
+  .legend {
+  left: 0 !important;
+  right: 0 !important;
+  /* bottom: 3.5rem !important; */
+  width: 100%;
+  }
+  
+  .legend p {
+  background-color: black;
+  opacity: 0.8;
+  padding: 1.5rem 0.4rem 1rem !important;
+  border-radius: 0.8rem;
+  }
+  
+  .interaction {
+  float: right !important;
+  position: relative;
+  }
+  
+  .interaction button {
+  border-radius: 0.5rem;
+  border: none;
+  background-color: white;
+  box-shadow: 0px 0px 3.13074px 0.782686px rgba(0, 0, 0, 0.25);
+  }
+  
+  #btn-like, #btn-coment {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem 0.5rem;
+  }
+  
+  .post-1{
+  height: 100%;
+  }
+  
+  .tamanho {
+  width: 100% !important;
+  }

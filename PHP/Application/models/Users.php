@@ -25,6 +25,18 @@ class Users
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public static function suggestionUser()
+  {
+    $conn = new Database();
+
+    $id = (int)$_SESSION['usersId'];
+
+    $result = $conn->executeQuery('SELECT id_usuario, nome, username FROM usuario WHERE id_usuario <> :ID LIMIT 5', array(
+      ':ID' => $id
+    ));
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   /**
   * Este método busca um usuário armazenados na base de dados com um
   * determinado ID
@@ -136,6 +148,74 @@ class Users
     else{
       return false;
     }
+  }
+
+  // my own posts
+  public static function findPostsById(int $id)
+  {
+    $conn = new Database();
+    $result = $conn->executeQuery('SELECT midia, legenda, data_publicacao FROM publicacao WHERE fk_usuario_id_usuario = :ID', array(
+      ':ID' => $id
+    ));
+
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // follow
+  public function follow($id){
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('INSERT INTO segue (fk_usuario_id_usuario, fk_usuario_id_usuario_) VALUES (:followerId, :followingId)');
+    // bind values
+    $conn->bind(':followerId', $user);
+    $conn->bind(':followingId', $id);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  // unfollow
+  public function unfollow($id){
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('DELETE FROM segue WHERE fk_usuario_id_usuario = :followerId AND fk_usuario_id_usuario_ = :followingId');
+    // bind values
+    $conn->bind(':followerId', $user);
+    $conn->bind(':followingId', $id);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  // following
+  public static function following()
+  {
+    $conn = new Database();
+
+    $id = (int)$_SESSION['usersId'];
+
+    $result = $conn->executeQuery('SELECT id_usuario, nome, username
+    FROM usuario
+    RIGHT JOIN segue
+    ON fk_usuario_id_usuario_ = id_usuario
+    WHERE fk_usuario_id_usuario = :ID', array(
+      ':ID' => $id
+    ));
+    return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
 }

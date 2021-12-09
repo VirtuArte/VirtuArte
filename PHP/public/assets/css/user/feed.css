@@ -337,6 +337,10 @@ button.accordion-button.collapsed::after {
     width: 400px !important;
 }
 
+.h-post {
+  height: 250px !important;
+}
+
 .background img {
     border-radius: 0.625rem;
 }
@@ -356,7 +360,7 @@ button.accordion-button.collapsed::after {
 
 .interaction {
   float: right !important;
-  top: 22rem;
+  top: 23.5rem;
   right: 2rem;
 }
 
