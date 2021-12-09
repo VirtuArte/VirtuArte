@@ -257,4 +257,29 @@ class User extends Controller
       // $this->pageNotFound();
     }
   }
+
+  // Likes
+
+  public function toLike($id = null, $status = null)
+  {
+    if (is_numeric($id)) {
+      $Users = $this->model('Users');
+      
+      if($status == 'like'){
+        $Users->toLike($id);
+      }
+      else if($status = 'notLike'){
+        $Users->notLike($id);
+      }
+
+      if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: " . $_SERVER["HTTP_REFERER"]);
+      }
+
+      // $this->view('user/profile', ['user' => $data, 'post' => $posts, 'suggestion' => $suggestion]);
+    } else {
+      // $this->pageNotFound();
+    }
+  }
 }
+
