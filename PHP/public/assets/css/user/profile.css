@@ -8,6 +8,21 @@
 
   .profilePic{
     border-radius: 100%;
+    width: 165px;
+    height: 165px;
+  }
+
+  .profileLabel{
+    background-color: rgba(0, 0, 0, 0.50);
+    color: white;
+    font-size: 1.75rem;
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  .profileLabel:hover{
+    cursor: pointer;
+    opacity: 1;
   }
   
   .perfil {

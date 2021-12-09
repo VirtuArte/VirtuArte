@@ -123,10 +123,27 @@
                 </div>
             </aside>
             <main class="mx-5 w-100">
+            <?php foreach($data['user'] as $user): ?>
                 <div class="profile align-center d-flex bg-white">
                     <div class="d-flex p-5">
+                    <?php 
+                        $id = $_SESSION['usersId'];
+                        if($_SERVER['REQUEST_URI'] == "/user/profile/$id"){
+                    ?>
                         
-                        <img src="/assets/img/foto-luna.png" style="width: 35%">
+                        <div class="bg-gray profilePic position-relative" style="background-image: url('<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>')">
+                            <label for="inputBanner" id="labelFile" class="d-flex align-items-center justify-content-center profileLabel profilePic w-100 h-100 p-5 text-center">Trocar foto de perfil</label>                                
+                            <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readFile(event)">
+                            <div class="dragData">
+                                <input id="fileDragName" name="fileDragName">
+                                <input id="fileDragSize" name="fileDragSize">
+                                <input id="fileDragType" name="fileDragType">
+                                <input id="fileDragData" name="fileDragData">
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePic">
+                    <?php } ?>
                         <div class="perfil">
                             <div class="name-profile">
                                 <?php 
@@ -135,9 +152,7 @@
                                     $lastName = sizeof($name) > 1 ? $name[sizeof($name) - 1] : ''
                                ?>
                                 <h3><?= $firstName.' '.$lastName ?></h3>
-                                <?php foreach($data['user'] as $user): ?>
                                 <h4><?= '@'.$user['username'] ?></h4>
-                                <?php break; endforeach ?>
                             </div>
                             <div class="perfil2">
                                 <div class="sugest m-2 d-flex">
@@ -152,6 +167,7 @@
                         </div>                        
                     </div>
                 </div>
+                <?php break; endforeach ?>
 
                 <section class="feed w-100">
                     <?php if(sizeof($data['post']) == 0){ ?>
