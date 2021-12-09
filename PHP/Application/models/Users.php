@@ -218,4 +218,45 @@ class Users
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function toLike($id){
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('INSERT INTO curte (fk_usuario_id_usuario, fk_publicacao_id_publicacao, curtir) VALUES (:user, :post, :toLike)');
+    // bind values
+    $conn->bind(':user', $user);
+    $conn->bind(':post', $id);
+    $conn->bind(':toLike', 1);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public function notLike($id){
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('UPDATE curte SET curtir = :notLike WHERE fk_usuario_id_usuario = :user AND fk_publicacao_id_publicacao = :post');
+    // bind values
+    $conn->bind(':user', $user);
+    $conn->bind(':post', $id);
+    $conn->bind(':toLike', 0);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
 }

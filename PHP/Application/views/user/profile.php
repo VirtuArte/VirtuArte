@@ -185,9 +185,9 @@
         
                             <div class="interaction position-absolute d-flex gap-3">
                                 <div class="like">
-                                    <button id="btn-like">
+                                <a href=<?= '/user/toLike/'.$post['id_publicacao'].'/toLike' ?> id="btn-like">
                                         <img src="/assets/img/like-disabled.svg" alt="Botão de like">
-                                    </button>
+                                    </a>
                                 </div>
         
                                 <div class="coment">
