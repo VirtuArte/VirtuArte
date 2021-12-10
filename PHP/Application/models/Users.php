@@ -280,5 +280,17 @@ class Users
     }
   }
 
+  public static function liked(){
+    $conn = new Database();
 
+    $user = (int)$_SESSION['usersId'];
+
+    $result = $conn->executeQuery('SELECT id_publicacao, fk_usuario_id_usuario 
+    FROM publicacao
+    RIGHT JOIN curte
+    ON (fk_publicacao_id_publicao = id_publicacao AND fk_usuario_id_usuario = fk_usuario_id_usuario)
+    WHERE curtir = :ID', array(
+      ':ID' => $id
+    ));
+    return $result->fetchAll(PDO::FETCH_ASSOC);
 }
