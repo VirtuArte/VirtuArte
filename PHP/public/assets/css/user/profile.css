@@ -8,8 +8,8 @@
 
   .profilePic{
     border-radius: 100%;
-    width: 165px;
-    height: 165px;
+    width: 132px;
+    height: 132px;
   }
 
   .profileLabel{
@@ -30,7 +30,6 @@
     flex-wrap: wrap;
     flex-direction: column; 
     justify-content: space-evenly;
-    align-items: center;
   }
   
   .perfil2{
@@ -79,10 +78,6 @@
   box-shadow: 0px 0px 3.13074px 0.782686px rgba(0, 0, 0, 0.25);
   }
   
-  .dates img {
-  width: 4rem;
-  }
-  
   .dates h4 {
   font-weight: 400;
   font-size: 1.5rem;
@@ -117,7 +112,7 @@
   position: relative;
   }
   
-  .interaction button {
+  .interaction a {
   border-radius: 0.5rem;
   border: none;
   background-color: white;
@@ -136,4 +131,8 @@
   
   .tamanho {
   width: 100% !important;
+  }
+
+  .chatbot{
+    top: 31.5rem;
   }

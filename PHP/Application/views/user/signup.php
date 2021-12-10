@@ -24,8 +24,8 @@
                   <label for="floatingSignInEmail">E-mail</label>
                 </div>
                 <div class="form-floating d-flex position-relative mb-3">
-                  <input type="password" class="form-control" id="floatingSignInPass" name="floatingSignInPass" placeholder="Password">
-                  <label for="floatingSignInPass">Senha</label>
+                  <input type="password" class="form-control" id="floatingSignInPass" name="floatingSignInPass" placeholder="Password" data-bs-toggle="tooltip" data-bs-placement="top" title="A senha deve ter no mínimo 6 caracteres">
+                  <label for="floatingSignInPass">Senha <span class="text-danger">*</span></label>
                   <span class="input-group-text position-absolute h-100 end-0" id="basic-addon2" onclick="password_show_hide()">
                     <i class="glyphicon glyphicon-eye-close me-2" id="show_eye"></i>
                     <i class="glyphicon glyphicon-eye-open me-2 d-none" id="hide_eye"></i>

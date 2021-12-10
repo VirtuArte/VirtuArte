@@ -44,11 +44,12 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
+      $dataUser = $Users->findById($_SESSION['usersId']);
       $data = $Users->findById($id);
       $posts = $Users->findPostsById($id);
       $suggestion = $Users->suggestionUser();
       $following = $Users->following();
-      $this->view('user/profile', ['user' => $data, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following]);
+      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following]);
     } else {
       $this->pageNotFound();
     }
@@ -156,6 +157,8 @@ class User extends Controller
       flash("login", "Usuário não encontrado.");
       $this->view('user/login');
     }
+    
+    header('Location: /user/feed');
   }
 
   public function createUserSession($user)
@@ -179,7 +182,12 @@ class User extends Controller
   {
     $Users = $this->model('Users'); // é retornado o model Users()
     $data = $Users->findAll();
-    $this->view('user/feed', ['users' => $data]);
+    $dataUser = $Users->findById($_SESSION['usersId']);
+    $posts = $Users->findPostsById($_SESSION['usersId']);
+    $suggestion = $Users->suggestionUser();
+    $following = $Users->following();
+    $feed = $Users->findAllPosts();
+    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'feed' => $feed]);
   }
 
   public function message()
@@ -232,7 +240,9 @@ class User extends Controller
 
     $Users->newPost($data['legenda'], $data['midia']);
 
-    header('Location: /user/feed');
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
   }
 
   // follow

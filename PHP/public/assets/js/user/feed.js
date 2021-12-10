@@ -39,3 +39,11 @@ holder.ondragleave = function () {
 	this.classList.remove('hover')
 	return false
 }
+
+submit = document.getElementById('publish');
+
+submit.addEventListener('click', () => {
+	if (document.getElementById('inputBanner').files.length == 0) {
+		document.getElementById('alert').innerHTML = "* Selecione um arquivo";
+	}
+})

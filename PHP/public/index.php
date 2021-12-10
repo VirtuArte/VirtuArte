@@ -58,54 +58,17 @@
     <?php else: ?>
       <link rel="stylesheet" href="/assets/css/user/feed.css">
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
-      <header>
-        <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
-          <div class="container justify-content-between">
-            <a class="navbar-brand" href="/">
-              <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="search offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
-                <input type="search" id="bar-search" name="bar-search" placeholder="Buscar no VirtuArte">
-              </div>
-            </div>
-            <div class="nav-right d-flex align-items-center">
-              <img src="/assets/img/foto-luna-nav.png" alt="Foto Luna Maria">
-              <div class="dropdown little-menu">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?php 
-                    $name = explode(" ", $_SESSION['usersName']);
-                    $firstName = $name[0];
-                    $lastName = sizeof($name) > 1 ? $name[sizeof($name) - 1] : ''
-                   ?>
-                  <?= $name[0] ?>
-                  <?= sizeof($name) > 1 ? $name[sizeof($name) - 1] : '' ?>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="/user/profile/<?= (int)$_SESSION['usersId'] ?>">Abrir perfil</a></li>
-                  <li><a class="dropdown-item text-danger" href="/user/logout">Sair</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      
       <?php $nivelChat = 0 ?>
 
       <?php 
-        if($_SERVER['REQUEST_URI'] == '/user/feed'){
+        //if($_SERVER['REQUEST_URI'] == '/user/feed'){
       ?>
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
+      <div class="accordion chatbot border-acordion" id="accordionExample">
+        <div class="accordion-item border-acordion">
           <div class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <!-- <button class="accordion-button border-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> -->
+            <button class="accordion-button border-acordion" type="button" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
               Converse com o Vitu
             </button>
           </div>
@@ -133,7 +96,7 @@
         </div>
       </div>
       <?php
-        }
+       // }
       ?>
     <?php endif; ?>   
 
@@ -148,36 +111,94 @@
 
     ?>
 
-    <footer class="border-top footer mt-5 pt-4 pb-4 bg-purple">
-      <div class="container">
-        <div>
-          <img src="/assets/img/logo branca.png" alt="Logo VirtuArte">
-        </div>
-        <hr>
-        <div class="d-flex justify-content-between mt-4">
-          <div>
-            <ul class="navbar-nav flex-row list-style-disc nav-footer">
-              <li class="nav-item ms-3 me-3">
-                <a href="/home#about" class="nav-link">Sobre</a>
-              </li>
-              <li class="nav-item ms-3 me-3">
-                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdropContact">Contato</a>
-              </li>
-              <li class="nav-item ms-3 me-3">
-                <a href="#" class="nav-link">Termos de Uso</a>
-              </li>
-              <li class="nav-item ms-3 me-3">
-                <a href="#" class="nav-link">Políticas de Privacidade</a>
-              </li>
-            </ul>
+
+  <?php if(!isset($_SESSION['usersId'])): ?>
+    <!-- Modal Contact -->
+<div class="modal fade modal-contact" id="staticBackdropContact" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-purple">
+      <div class="modal-body p-0 row">
+        <div class="col-5 d-flex align-items-center justify-content-center">
+          <div class="container ms-5 me-5">
+            <h4 class="fs-3"><strong>Entre em contato conosco</strong></h4>
+            <p class="contact-instruction mb-5 fs-5">Preencha o formulário ou procure por um destes meios</p>
+            <div class="mt-5 fs-6">
+              <div class="d-flex py-2">
+                <i class="glyphicon glyphicon-envelope fs-5 top-0"></i>
+                <p class="px-3">contato.virtuarte@gmail.com</p>
+              </div>
+              <div class="d-flex py-2">
+                <i class="glyphicon glyphicon-map-marker fs-5 top-0"></i>
+                <p class="px-3">R. Pedro Vicente, 625 - Canindé, São Paulo - SP, 01109-010</p>
+              </div>
+              <div class="d-flex py-2">
+                <i class="glyphicon glyphicon-earphone fs-5 top-0"></i>
+                <p class="px-3">(11) 9999-9999</p>
+              </div>
+            </div>
           </div>
-          <span class="me-3">
-            &copy; 2021 - VirtuArte
-          </span>
+        </div>
+        <div class="col-7 p-0 position-relative right-config bg-white background-span">
+          <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="container d-flex align-items-center justify-content-center m-auto h-100">
+            <form action="https://formspree.io/f/xayarpql" method="post" class="w-100 px-4 pt-4">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingContactName" name="floatingContactName" placeholder="Berga Motta" required>
+                <label for="floatingContactName">Nome</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingContactEmail" name="floatingContactEmail" placeholder="name@example" required>
+                <label for="floatingContactEmail">E-mail</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingContactTopic" name="floatingContactTopic" placeholder="Interação com o Vitu">
+                <label for="floatingContactTopic">Assunto</label>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control h-textarea" id="floatingContactMessage" name="floatingContactMessage" placeholder="Descreva sua mensagem" required></textarea>
+                <label for="floatingContactMessage">Mensagem</label>
+              </div>
+              <div class="button d-flex justify-content-center mt-4">
+                <button class="bg-blue btn btn-form" type="submit">Enviar</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</div>
 
+  <footer class="border-top footer mt-5 pt-4 pb-4 bg-purple">
+    <div class="container">
+      <div>
+        <img src="/assets/img/logo branca.png" alt="Logo VirtuArte">
+      </div>
+      <hr>
+      <div class="d-flex justify-content-between mt-4">
+        <div>
+          <ul class="navbar-nav flex-row list-style-disc nav-footer">
+            <li class="nav-item ms-3 me-3">
+              <a href="/home#about" class="nav-link">Sobre</a>
+            </li>
+            <li class="nav-item ms-3 me-3">
+              <a class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdropContact">Contato</a>
+            </li>
+            <li class="nav-item ms-3 me-3">
+              <a href="#" class="nav-link">Termos de Uso</a>
+            </li>
+            <li class="nav-item ms-3 me-3">
+              <a href="#" class="nav-link">Políticas de Privacidade</a>
+            </li>
+          </ul>
+        </div>
+        <span class="me-3">
+          &copy; 2021 - VirtuArte
+        </span>
+      </div>
+    </div>
+  </footer>
+  <?php endif; ?> 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -191,14 +212,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-
+    <script src="/assets/js/user/feed.js"></script>
+    
     <script>
-      // var input = document.getElementById('data');
-
-      // input.addEventListener('focus', () => {
-
-      // })
-
       $(document).ready(function(){
         $nivel = $("#nivel").val();
         $("#send-btn").on("click", function(){

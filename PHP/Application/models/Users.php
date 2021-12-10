@@ -31,7 +31,7 @@ class Users
 
     $id = (int)$_SESSION['usersId'];
 
-    $result = $conn->executeQuery('SELECT id_usuario, nome, username FROM usuario WHERE id_usuario <> :ID LIMIT 5', array(
+    $result = $conn->executeQuery('SELECT id_usuario, nome, username, foto_perfil FROM usuario WHERE id_usuario <> :ID LIMIT 5', array(
       ':ID' => $id
     ));
     return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -154,8 +154,30 @@ class Users
   public static function findPostsById(int $id)
   {
     $conn = new Database();
-    $result = $conn->executeQuery('SELECT midia, legenda, data_publicacao FROM publicacao WHERE fk_usuario_id_usuario = :ID', array(
+    $result = $conn->executeQuery('SELECT id_publicacao, midia, legenda, data_publicacao FROM publicacao WHERE fk_usuario_id_usuario = :ID', array(
       ':ID' => $id
+    ));
+
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // my own posts
+  public static function findAllPosts()
+  {
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $result = $conn->executeQuery('SELECT post.id_publicacao, post.midia, post.legenda, post.data_publicacao, post.fk_usuario_id_usuario, perfil.foto_perfil, perfil.nome, perfil.id_usuario
+    FROM publicacao post
+    LEFT JOIN segue
+    ON post.fk_usuario_id_usuario = segue.fk_usuario_id_usuario_
+    LEFT JOIN usuario perfil
+    ON post.fk_usuario_id_usuario = perfil.id_usuario
+    WHERE segue.fk_usuario_id_usuario = :ID
+    OR post.fk_usuario_id_usuario = :ID
+    ORDER BY post.data_publicacao DESC', array(
+      ':ID' => $user
     ));
 
     return $result->fetchAll(PDO::FETCH_ASSOC);
