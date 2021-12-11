@@ -251,14 +251,14 @@
                                             $status = 'toLike';
                                             if (isset($data['liked'])) {
                                                 foreach ($data['liked'] as $liked) {
-                                                    if ($liked['id_usuario'] == $post['id_usuario']) {
+                                                    if ($liked['fk_publicacao_id_publicacao'] == $post['id_publicacao']) {
                                                         $status = "notLike";
                                                     }
                                                 }
                                             }
                                             ?>
-                                            <a href="/user/toLike/<?= $post['id_publicacao'] ?>/like" id="btn-like">
-                                                <img src="/assets/img/like-disabled.svg" alt="Botão de like">
+                                            <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status ?>" id="btn-like">
+                                                <img src="/assets/img/<?= $status == 'notLike' ? 'like-disabled.svg' : 'like-active.svg'?>" alt="Botão de like">
                                             </a>
                                         </div>
 
