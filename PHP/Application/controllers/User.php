@@ -49,8 +49,8 @@ class User extends Controller
       $posts = $Users->findPostsById($id);
       $suggestion = $Users->suggestionUser();
       $following = $Users->following();
-      $liked = $Users->liked();
-      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked'=> $liked]);
+      $liked = $Users->liked($post, $id);
+      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked]);
     } else {
       $this->pageNotFound();
     }
@@ -187,9 +187,9 @@ class User extends Controller
     $posts = $Users->findPostsById($_SESSION['usersId']);
     $suggestion = $Users->suggestionUser();
     $following = $Users->following();
-    $liked = $Users->liked();
+    // $liked = $Users->liked();
     $feed = $Users->findAllPosts();
-    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'feed' => $feed]);
+    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'feed' => $feed]);
   }
 
   public function message()

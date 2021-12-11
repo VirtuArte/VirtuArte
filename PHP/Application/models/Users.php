@@ -280,18 +280,20 @@ class Users
     }
   }
 
-  public static function liked(){
+  public static function liked($id_publicacao, $id_usuario){
     $conn = new Database();
 
-    $id = (int)$_SESSION['usersId'];
+    $id_publicacao = (int)$id_publicacao;
+    $id_usuario = (int)$id_usuario;
 
-    $result = $conn->executeQuery('SELECT id_publicacao, fk_usuario_id_usuario 
-    FROM publicacao
-    RIGHT JOIN curte
-    ON id_publicacao = fk_publicacao_id_publicao 
-    WHERE curtir = :ID', array(
-      ':ID' => $id
-    ));
-    return $result->fetchAll(PDO::FETCH_ASSOC);
+    $conn->query('SELECT `curtir` FROM `curte` WHERE fk_usuario_id_usuario = "$id_usuario" AND fk_publicacao_id_publicacao = "$id_publicacao"');
+    
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
-}
+ }
