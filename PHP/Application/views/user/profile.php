@@ -248,16 +248,18 @@
                                     <div class="interaction position-absolute d-flex gap-3">
                                         <div class="like">
                                             <?php
-
                                             $status = 'notlike';
                                             if (isset($data['liked'])) {
                                                 foreach ($data['liked'] as $liked) {
                                                     if ($liked['id_publicacao'] == $post['id_publicacao']) {
                                                         $status = "like";
                                                     }
+                                                }
+                                            }
                                             ?>
                                             <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status == 'like' ? 'notLike' : 'like'?>" id="btn-like">
                                                 <img src="/assets/img/<?= $status == 'like' ? 'like-active.svg' : 'like-disabled.svg'?>" alt="Botão de like">
+                                            </a>
                                         </div>
 
                                         <div class="coment">
@@ -271,9 +273,11 @@
                     <?php }
                     } ?>
 
+
                     <!-- COLOCAR MINI FOOTER AQUI -->
                 </section>
-                <?php break; endforeach ?>
+            <?php break;
+            endforeach ?>
         </main>
     </div>
 </div>
