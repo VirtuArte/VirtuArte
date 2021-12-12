@@ -280,13 +280,11 @@ class Users
     }
   }
 
-  public static function liked($id_publicacao, $id_usuario){
+  public static function liked(){
     $conn = new Database();
 
-    $id_publicacao = (int)$id_publicacao;
-    $id_usuario = (int)$id_usuario;
+    $id = (int)$_SESSION['usersId'];
 
-<<<<<<< HEAD
     $result = $conn->executeQuery('SELECT post.id_publicacao, post.fk_usuario_id_usuario 
     FROM publicacao as post 
     RIGHT JOIN curte 
@@ -295,16 +293,5 @@ class Users
       ':ID' => $id
     ));
     return $result->fetchAll(PDO::FETCH_ASSOC);
-=======
-    $conn->query('SELECT `curtir` FROM `curte` WHERE fk_usuario_id_usuario = "$id_usuario" AND fk_publicacao_id_publicacao = "$id_publicacao"');
-    
-    // execute
-    if($conn->execute()){
-      return true;
-    }
-    else{
-      return false;
-    }
->>>>>>> 9ae4dc058a4965adb590edebfbbce7bd1c872242
   }
  }
