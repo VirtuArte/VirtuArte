@@ -324,9 +324,7 @@ class Users
     FROM interage as itg 
     RIGHT JOIN publicacao as pu
     ON itg.fk_publicacao_id_publicacao = pu.id_publicacao 
-    WHERE itg.fk_usuario_id_usuario = :ID', array(
-      ':ID' => $id
-    ));
+    ');
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
  }

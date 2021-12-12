@@ -73,7 +73,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Escreva uma legenda.." id="floatingTextarea" name="legend" maxlength="550"></textarea>
+                                            <textarea class="form-control w-100 resize-none" placeholder="Escreva uma legenda.." id="floatingTextarea" name="legend" maxlength="550"></textarea>
                                             <label for="floatingTextarea">Escreva uma legenda...</label>
                                         </div>
                                     </div>
@@ -265,12 +265,12 @@
                                         <div class="coment">
 
                                             <!-- Button trigger modal -->
-                                            <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-coment">
+                                            <a data-bs-toggle="modal" data-bs-target="#staticBackdrop<?= $post['id_publicacao'] ?> " id="btn-coment">
                                                 <img src="/assets/img/comment.svg" alt="Botão de comentar">
                                             </a>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal fade" id="staticBackdrop<?= $post['id_publicacao'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -278,15 +278,10 @@
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                                <?php if (sizeof($data['showComment']) == 0) { ?>
-                                                                    <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
-                                                                        <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
-                                                                        <h2>Ainda não há comentários</h2>
-                                                                    </div>
-                                                            <?php } else { ?>
-                                                                <?php foreach ($data['showComment'] as $comment) { ?>
+                                                            <?php foreach ($data['showComment'] as $comment) { ?>
+                                                                <?php if($post['id_publicacao'] == $comment['fk_publicacao_id_publicacao']) { ?>
                                                                     <div class="feed-posts position-relative w-post m-3 mt-0">
-                                                                        <div class="dates d-flex align-items-center gap-4 position-relative">
+                                                                        <div class="dates d-flex align-items-center gap-4">
                                                                             <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
                                                                             <div class="creator">
                                                                                 <h4><?= $firstName . ' ' . $lastName ?></h4>
@@ -295,16 +290,24 @@
 
                                                                         <div class="background position-relative w-fit-content">
                                                                             <div>
-                                                                                <p class="d-block shadow-sm w-100 h-post"><?= $comment['comentario'] ?></p>
+                                                                                <p class="d-block shadow-sm w-100"><?= $comment['comentario'] ?></p>
                                                                             </div>
                                                                         </div>
+                                                                    </div> 
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                                <?php if($comment['id_interacao'] < 1) { ?>
+                                                                    <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
+                                                                        <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
+                                                                        <h2>Ainda não há comentários</h2>
                                                                     </div>
-                                                                <?php }
-                                                            } ?>
+                                                                <?php } ?>
                                                         </div>
-                                                        <div class="modal-footer d-flex justify-content-between">
-                                                            <textarea name="coment" id="coment"></textarea>
-                                                            <button type="button" class="btn" id="btn-submit">Enviar</button>
+                                                        <div class="modal-footer">
+                                                            <form action="/user/publishComment/<?=$post['id_publicacao']?>" method="post" class="w-100 d-flex justify-content-between">
+                                                                <textarea name="comment" id="comment"></textarea>
+                                                                <button type="submit" class="btn" id="btn-submit">Enviar</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -297,5 +297,21 @@ class User extends Controller
       // $this->pageNotFound();
     }
   }
+
+  public function publishComment($post = null)
+  {
+    //Init data
+    $data = [
+      'comentario' => trim($_POST['comment']),
+    ];
+
+    $Users = $this->model('Users');
+
+    $Users->comment($post, $data['comentario']);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
 }
 

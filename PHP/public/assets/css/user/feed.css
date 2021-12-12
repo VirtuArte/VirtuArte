@@ -454,6 +454,10 @@ button.accordion-button.collapsed::after {
   border: none !important;
 }
 
+.resize-none {
+  resize: none !important;
+}
+
 .dropzone.form-control{
   border: 2px dashed var(--bs-gray-400);
   width: 20rem;
@@ -504,7 +508,7 @@ button.accordion-button.collapsed::after {
   background-color: var(--purple) !important;
 }
 
-.modal textarea {
+.modal textarea#comment {
   width: 80%;
   min-height: 1rem !important;
   padding: 0.5rem !important;
