@@ -278,9 +278,11 @@ class User extends Controller
       $Users = $this->model('Users');
       
       if($status == 'like'){
+        // echo 'like';
         $Users->toLike($id);
       }
       else if($status = 'notLike'){
+        // echo 'notLike';
         $Users->notLike($id);
       }
 

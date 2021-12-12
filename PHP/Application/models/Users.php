@@ -265,11 +265,11 @@ class Users
 
     $user = (int)$_SESSION['usersId'];
 
-    $conn->query('UPDATE curte SET curtir = :notLike WHERE fk_usuario_id_usuario = :user AND fk_publicacao_id_publicacao = :post');
+    $conn->query('DELETE from curte 
+    WHERE fk_usuario_id_usuario = :user AND fk_publicacao_id_publicacao = :post');
     // bind values
     $conn->bind(':user', $user);
     $conn->bind(':post', $id);
-    $conn->bind(':toLike', 0);
 
     // execute
     if($conn->execute()){
@@ -285,11 +285,11 @@ class Users
 
     $id = (int)$_SESSION['usersId'];
 
-    $result = $conn->executeQuery('SELECT id_publicacao, fk_usuario_id_usuario 
-    FROM publicacao
-    RIGHT JOIN curte
-    ON id_publicacao = fk_publicacao_id_publicao 
-    WHERE curtir = :ID', array(
+    $result = $conn->executeQuery('SELECT post.id_publicacao, post.fk_usuario_id_usuario 
+    FROM publicacao as post 
+    RIGHT JOIN curte 
+    ON post.id_publicacao = curte.fk_publicacao_id_publicacao 
+    WHERE curtir = 1 AND post.fk_usuario_id_usuario = :ID', array(
       ':ID' => $id
     ));
     return $result->fetchAll(PDO::FETCH_ASSOC);
