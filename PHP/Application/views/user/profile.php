@@ -257,15 +257,58 @@
                                                 }
                                             }
                                             ?>
-                                            <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status == 'like' ? 'notLike' : 'like'?>" id="btn-like">
-                                                <img src="/assets/img/<?= $status == 'like' ? 'like-active.svg' : 'like-disabled.svg'?>" alt="Botão de like">
+                                            <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status == 'like' ? 'notLike' : 'like' ?>" id="btn-like">
+                                                <img src="/assets/img/<?= $status == 'like' ? 'like-active.svg' : 'like-disabled.svg' ?>" alt="Botão de like">
                                             </a>
                                         </div>
 
                                         <div class="coment">
-                                            <a id="btn-coment">
+
+                                            <!-- Button trigger modal -->
+                                            <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="btn-coment">
                                                 <img src="/assets/img/comment.svg" alt="Botão de comentar">
                                             </a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Comentários</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                                <?php if (sizeof($data['showComment']) == 0) { ?>
+                                                                    <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
+                                                                        <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
+                                                                        <h2>Ainda não há comentários</h2>
+                                                                    </div>
+                                                            <?php } else { ?>
+                                                                <?php foreach ($data['showComment'] as $comment) { ?>
+                                                                    <div class="feed-posts position-relative w-post m-3 mt-0">
+                                                                        <div class="dates d-flex align-items-center gap-4 position-relative">
+                                                                            <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
+                                                                            <div class="creator">
+                                                                                <h4><?= $firstName . ' ' . $lastName ?></h4>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="background position-relative w-fit-content">
+                                                                            <div>
+                                                                                <p class="d-block shadow-sm w-100 h-post"><?= $comment['comentario'] ?></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php }
+                                                            } ?>
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-between">
+                                                            <textarea name="coment" id="coment"></textarea>
+                                                            <button type="button" class="btn" id="btn-submit">Enviar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

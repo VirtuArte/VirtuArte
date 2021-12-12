@@ -50,7 +50,8 @@ class User extends Controller
       $suggestion = $Users->suggestionUser();
       $following = $Users->following();
       $liked = $Users->liked();
-      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked]);
+      $showComment = $Users->showComment();
+      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment]);
     } else {
       $this->pageNotFound();
     }
@@ -188,8 +189,9 @@ class User extends Controller
     $suggestion = $Users->suggestionUser();
     $following = $Users->following();
     $liked = $Users->liked();
+    $showComment = $Users->showComment();
     $feed = $Users->findAllPosts();
-    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'feed' => $feed]);
+    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment, 'feed' => $feed]);
   }
 
   public function message()

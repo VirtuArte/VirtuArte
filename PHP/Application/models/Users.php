@@ -280,7 +280,7 @@ class Users
     }
   }
 
-  public static function liked(){
+  public static function liked() {
     $conn = new Database();
 
     $id = (int)$_SESSION['usersId'];
@@ -290,6 +290,41 @@ class Users
     RIGHT JOIN curte 
     ON post.id_publicacao = curte.fk_publicacao_id_publicacao 
     WHERE curtir = 1 AND post.fk_usuario_id_usuario = :ID', array(
+      ':ID' => $id
+    ));
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function comment($post, $comment) {
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('INSERT INTO interage (fk_publicacao_id_publicacao, fk_usuario_id_usuario, comentario) VALUES (:post, :user, :comment)');
+    // bind values
+    $conn->bind(':post', $post);
+    $conn->bind(':user', $user);
+    $conn->bind(':comment', $comment);
+
+    // execute
+    if($conn->execute()){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  public static function showComment() {
+    $conn = new Database();
+
+    $id = (int)$_SESSION['usersId'];
+
+    $result = $conn->executeQuery('SELECT itg.fk_publicacao_id_publicacao, itg.fk_usuario_id_usuario, itg.comentario, itg.id_interacao 
+    FROM interage as itg 
+    RIGHT JOIN publicacao as pu
+    ON itg.fk_publicacao_id_publicacao = pu.id_publicacao 
+    WHERE itg.fk_usuario_id_usuario = :ID', array(
       ':ID' => $id
     ));
     return $result->fetchAll(PDO::FETCH_ASSOC);
