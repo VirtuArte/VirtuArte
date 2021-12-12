@@ -11,7 +11,7 @@ class Database extends PDO
   private $DB_USER = 'virtuarteuser';
   private $DB_PASSWORD = 'virtuartepassword';
   private $DB_HOST = 'localhost';
-  private $DB_PORT = 3307;
+  private $DB_PORT = 3306;
 
   // will be de PDO object
   private $dbh;
