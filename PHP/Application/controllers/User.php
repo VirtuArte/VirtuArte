@@ -327,4 +327,17 @@ class User extends Controller
       header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
   }
+
+
+  public function deletePost($post = null)
+  {
+
+    $Users = $this->model('Users');
+
+    $Users->delete($post);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
 }
