@@ -346,7 +346,7 @@ class Users
     $conn->bind(':foto', $foto);
     $conn->bind(':ID', $user);
   }
-  
+
   public function delete($id)
   {
     $conn = new Database();
