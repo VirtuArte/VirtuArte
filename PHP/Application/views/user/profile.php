@@ -272,7 +272,6 @@
                                 <span>Total de postagens</span>
                                 <span class="mx-4"><?= sizeof($data['post']) ?></span>
                             </div>
-<<<<<<< HEAD
                             <div class="perfil2">
                                 <div class="sugest m-2 d-flex">
                                     <span>Total de postagens</span>
@@ -319,11 +318,6 @@
                                     if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") { ?>
                                     <button id="follow" data-bs-toggle="modal" data-bs-target="#modalFollow">Seguindo</button>
                                 <?php } ?>
-=======
-                            <div class="sugest m-2 d-flex">
-                                <span>Avaliações realizadas</span>
-                                <span class="mx-4">0</span>
->>>>>>> b26558d0941e20d2ddb70c9e6de1a23ee1525247
                             </div>
                         </div>
                     </div>
@@ -422,46 +416,12 @@
                                                         <div class="creator">
                                                             <h4><?= $firstName . ' ' . $lastName ?></h4>
                                                         </div>
-<<<<<<< HEAD
-                                                        <div class="modal-body">
-                                                            <?php foreach ($data['showComment'] as $comment) { ?>
-                                                                <?php if ($post['id_publicacao'] == $comment['fk_publicacao_id_publicacao']) { ?>
-                                                                    <div class="feed-posts position-relative w-post m-3 mt-0">
-                                                                        <div class="dates d-flex align-items-center gap-4">
-                                                                            <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
-                                                                            <div class="creator">
-                                                                                <h4><?= $firstName . ' ' . $lastName ?></h4>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="background position-relative w-fit-content">
-                                                                            <div>
-                                                                                <p class="d-block shadow-sm w-100"><?= $comment['comentario'] ?></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php } ?>
-                                                            <?php } ?>
-                                                            <?php if ($comment['id_interacao'] < 1) { ?>
-                                                                <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
-                                                                    <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
-                                                                    <h2>Ainda não há comentários</h2>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <form action="/user/publishComment/<?= $post['id_publicacao'] ?>" method="post" class="w-100 d-flex justify-content-between">
-                                                                <textarea name="comment" id="comment"></textarea>
-                                                                <button type="submit" class="btn" id="btn-submit">Enviar</button>
-                                                            </form>
-=======
                                                     </div>
 
                                                     <div class="background position-relative w-fit-content">
                                                         <div>
                                                             <p class="d-block shadow-sm w-100">
                                                                 <?= $comment['comentario'] ?></p>
->>>>>>> b26558d0941e20d2ddb70c9e6de1a23ee1525247
                                                         </div>
                                                     </div>
                                                 </div>
