@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/assets/css/user/profile.css">
+<script src="/assets/js/user/feed.js"></script>
 
 <header>
     <?php foreach ($data['user'] as $user) : ?>
@@ -182,8 +183,9 @@
                             <div class="modal fade" id="newPhotoProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content border-acordion p-3">
-                                        <form action="/user/publishPhotoProfil" method="post">
+                                        <form action="/user/publishPhotoProfile" method="post">
                                             <div class="modal-header">
+                                                <h5 class="modal-title d-flex align-items-center" id="exampleModalLabel">Trocar foto de perfil</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -191,9 +193,9 @@
                                                     <div class="col-6">
                                                         <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupPhoto01" onchange="readPhotoProfile(event)">
                                                             <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
-                                                                <label for="inputBanner" id="labelPhoto">Selecione o arquivo</label>
+                                                                <label for="inputPhoto" id="labelPhoto">Selecione o arquivo</label>
                                                                 <input type="file" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
-                                                                <span id="alert"></span>
+                                                                <span id="alert2"></span>
                                                             </div>
                                                         </div>
                                                     </div>

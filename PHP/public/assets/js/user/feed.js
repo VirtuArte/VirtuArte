@@ -49,7 +49,6 @@ submit.addEventListener('click', () => {
 })
 
 function readPhotoProfile(e) {
-	console.log('Ai minha cabeça')
 	var files
 	if (e.target.files) {
 		files = e.target.files
@@ -78,3 +77,9 @@ function getThePhoto(e) {
 	e.target.style.borderColor = '#ccc'
 	readPhotoProfile(e)
 }
+
+submit.addEventListener('click', () => {
+	if (document.getElementById('inputPhoto').files.length == 0) {
+		document.getElementById('alert2').innerHTML = "* Selecione um arquivo";
+	}
+})

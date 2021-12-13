@@ -342,9 +342,17 @@ class Users
     $user = (int)$_SESSION['usersId'];
 
     $conn->query('UPDATE usuario SET foto_perfil = :foto WHERE id_usuario = :ID');
+
     // bind values
     $conn->bind(':foto', $foto);
     $conn->bind(':ID', $user);
+
+    // execute
+    if ($conn->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public function delete($id)

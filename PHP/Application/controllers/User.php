@@ -318,7 +318,7 @@ class User extends Controller
     $data = [
       'foto' => trim($_POST['photoProfile']),
     ];
-
+    
     $Users = $this->model('Users');
 
     $Users->changePhoto($data['foto']);
