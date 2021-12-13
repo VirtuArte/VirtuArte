@@ -177,16 +177,51 @@
                         $id = $_SESSION['usersId'];
                         if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") {
                         ?>
-
-                            <div class="bg-gray mx-3 profilePic position-relative" style="background-image: url('<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>')">
-                                <label for="inputBanner" id="labelFile" class="d-flex align-items-center justify-content-center profileLabel profilePic w-100 h-100 p-5 text-center">Trocar foto de perfil</label>
-                                <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readFile(event)">
-                                <div class="dragData">
-                                    <input id="fileDragName" name="fileDragName">
-                                    <input id="fileDragSize" name="fileDragSize">
-                                    <input id="fileDragType" name="fileDragType">
-                                    <input id="fileDragData" name="fileDragData">
+                            <div class="modal fade" id="newPhotoProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content border-acordion p-3">
+                                        <form action="/user/publishPhotoProfil" method="post">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupPhoto01" onchange="readPhotoProfile(event)">
+                                                            <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
+                                                                <label for="inputBanner" id="labelPhoto">Selecione o arquivo</label>
+                                                                <input type="file" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
+                                                                <span id="alert"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="previewPhoto" class="mt-2">
+                                                    <div class="input-group my-5 dropzone dz-clickable form-control d-flex justify-content-center">
+                                                        <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
+                                                            <img src="" alt="" id="photoPreview">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="dragData">
+                                                        <input id="photoDragName" name="photoDragName">
+                                                        <input id="photoDragSize" name="photoDragSize">
+                                                        <input id="photoDragType" name="photoDragType">
+                                                        <input id="photoProfile" name="photoProfile">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-publish" id="save">Salvar</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="bg-gray mx-3 profilePic position-relative" style="background-image: url('<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>')">
+                                <label id="labelChangePhoto" class="d-flex align-items-center justify-content-center profileLabel profilePic w-100 h-100 p-5 text-center" data-bs-toggle="modal" data-bs-target="#newPhotoProfile">Trocar foto de perfil</label>
+                                <!-- <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readPhotoProfile(event)"> -->
                             </div>
                         <?php } else { ?>
                             <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePic">
@@ -210,6 +245,43 @@
                                     <span>Avaliações realizadas</span>
                                     <span class="mx-4">0</span>
                                 </div>
+
+                                <div class="modal fade" id="modalFollow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content border-acordion p-3">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Seguindo</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php foreach ($data['following'] as $following) { ?>
+                                                    <div class="feed-posts position-relative w-post m-3 mt-0">
+                                                        <div class="d-flex align-items-center justify-content-between">
+                                                            <div class="dates d-flex align-items-center gap-4">
+                                                                <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
+                                                                <div class="creator">
+                                                                    <h4><?= $following['nome'] ?></h4>
+                                                                </div>
+                                                            </div>
+                                                            <a href="/user/follow/<?= (int)$following['id_usuario'] ?>/unfollow" class="text-black links text-end"><span class="links">Deixar de seguir</span></a>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
+                                                <?php if (sizeof($data['following']) == 0) { ?>
+                                                    <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
+                                                        <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
+                                                        <h2>Você ainda não segue ninguém</h2>
+                                                    </div>
+                                                 <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                    $id = $_SESSION['usersId'];
+                                    if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") { ?>
+                                    <button id="follow" data-bs-toggle="modal" data-bs-target="#modalFollow">Seguindo</button>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -279,7 +351,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <?php foreach ($data['showComment'] as $comment) { ?>
-                                                                <?php if($post['id_publicacao'] == $comment['fk_publicacao_id_publicacao']) { ?>
+                                                                <?php if ($post['id_publicacao'] == $comment['fk_publicacao_id_publicacao']) { ?>
                                                                     <div class="feed-posts position-relative w-post m-3 mt-0">
                                                                         <div class="dates d-flex align-items-center gap-4">
                                                                             <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
@@ -293,18 +365,18 @@
                                                                                 <p class="d-block shadow-sm w-100"><?= $comment['comentario'] ?></p>
                                                                             </div>
                                                                         </div>
-                                                                    </div> 
-                                                                    <?php } ?>
-                                                                <?php } ?>
-                                                                <?php if($comment['id_interacao'] < 1) { ?>
-                                                                    <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
-                                                                        <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
-                                                                        <h2>Ainda não há comentários</h2>
                                                                     </div>
                                                                 <?php } ?>
+                                                            <?php } ?>
+                                                            <?php if ($comment['id_interacao'] < 1) { ?>
+                                                                <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
+                                                                    <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
+                                                                    <h2>Ainda não há comentários</h2>
+                                                                </div>
+                                                            <?php } ?>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form action="/user/publishComment/<?=$post['id_publicacao']?>" method="post" class="w-100 d-flex justify-content-between">
+                                                            <form action="/user/publishComment/<?= $post['id_publicacao'] ?>" method="post" class="w-100 d-flex justify-content-between">
                                                                 <textarea name="comment" id="comment"></textarea>
                                                                 <button type="submit" class="btn" id="btn-submit">Enviar</button>
                                                             </form>

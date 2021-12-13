@@ -4,20 +4,22 @@ namespace Application\models;
 
 use Application\core\Database;
 use PDO;
+
 class Users
 {
   /** Poderiamos ter atributos aqui */
   private $db;
-  
-  public function __construct(){
+
+  public function __construct()
+  {
     $this->db = new Database;
   }
 
   /**
-  * Este método busca todos os usuários armazenados na base de dados
-  *
-  * @return   array
-  */
+   * Este método busca todos os usuários armazenados na base de dados
+   *
+   * @return   array
+   */
   public static function findAll()
   {
     $conn = new Database();
@@ -38,12 +40,12 @@ class Users
   }
 
   /**
-  * Este método busca um usuário armazenados na base de dados com um
-  * determinado ID
-  * @param    int     $id   Identificador único do usuário
-  *
-  * @return   array
-  */
+   * Este método busca um usuário armazenados na base de dados com um
+   * determinado ID
+   * @param    int     $id   Identificador único do usuário
+   *
+   * @return   array
+   */
   public static function findById(int $id)
   {
     $conn = new Database();
@@ -55,7 +57,8 @@ class Users
   }
 
   //Find user by email or username
-  public function findUserByEmailOrUsername($email, $username){
+  public function findUserByEmailOrUsername($email, $username)
+  {
     $conn = new Database();
 
     $conn->query('SELECT * FROM usuario WHERE username = :username OR email = :email');
@@ -65,15 +68,16 @@ class Users
     $row = $conn->single();
 
     // Check row
-    if($conn->rowCount() > 0){
-        return $row;
-    }else{
-        return false;
+    if ($conn->rowCount() > 0) {
+      return $row;
+    } else {
+      return false;
     }
   }
 
   //Register User
-  public function register($data){
+  public function register($data)
+  {
     $conn = new Database();
 
     $conn->query('INSERT INTO usuario (username, email, nome, senha) VALUES (:username, :email, :nome, :senha)');
@@ -84,26 +88,27 @@ class Users
     $conn->bind(':senha', $data['senha']);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
-  
-  public function login($nameOrEmail, $password, $row){
-    if($row == false) return false;
+
+  public function login($nameOrEmail, $password, $row)
+  {
+    if ($row == false) return false;
 
     $hashedPassword = $row->senha;
-    if(password_verify($password, $hashedPassword)){
-        return $row;
-    }else{
-        return false;
+    if (password_verify($password, $hashedPassword)) {
+      return $row;
+    } else {
+      return false;
     }
   }
 
-  public function bot($mensagem){
+  public function bot($mensagem)
+  {
     $conn = mysqli_connect("localhost", "virtuarteuser", "virtuartepassword", "virtuarte") or die("Database Error");
 
     // getting user message through ajax
@@ -114,23 +119,24 @@ class Users
     $run_query = mysqli_query($conn, $check_data) or die("Error");
 
     // if user query matched to database query we'll show the reply otherwise it go to else statement
-    if(mysqli_num_rows($run_query) > 0){
-        //fetching replay from the database according to the user query
-        $fetch_data = mysqli_fetch_assoc($run_query);
-        //storing replay to a varible which we'll send to ajax
-        // $replay = $fetch_data['nome'];
-        $retorno = $fetch_data['nome'];
-        // echo $replay;
-    }else{
-        // echo "Sorry can't be able to understand you!";
-        $retorno = "Sorry can't be able to understand you!";
+    if (mysqli_num_rows($run_query) > 0) {
+      //fetching replay from the database according to the user query
+      $fetch_data = mysqli_fetch_assoc($run_query);
+      //storing replay to a varible which we'll send to ajax
+      // $replay = $fetch_data['nome'];
+      $retorno = $fetch_data['nome'];
+      // echo $replay;
+    } else {
+      // echo "Sorry can't be able to understand you!";
+      $retorno = "Sorry can't be able to understand you!";
     }
 
     return $retorno;
   }
 
   // new post
-  public function newPost($legend, $midia){
+  public function newPost($legend, $midia)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -142,10 +148,9 @@ class Users
     $conn->bind(':user', $user);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
@@ -184,7 +189,8 @@ class Users
   }
 
   // follow
-  public function follow($id){
+  public function follow($id)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -195,16 +201,16 @@ class Users
     $conn->bind(':followingId', $id);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
 
   // unfollow
-  public function unfollow($id){
+  public function unfollow($id)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -215,10 +221,9 @@ class Users
     $conn->bind(':followingId', $id);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
@@ -240,7 +245,8 @@ class Users
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function toLike($id){
+  public function toLike($id)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -252,15 +258,15 @@ class Users
     $conn->bind(':toLike', 1);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
 
-  public function notLike($id){
+  public function notLike($id)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -272,15 +278,15 @@ class Users
     $conn->bind(':post', $id);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
 
-  public static function liked() {
+  public static function liked()
+  {
     $conn = new Database();
 
     $id = (int)$_SESSION['usersId'];
@@ -295,7 +301,8 @@ class Users
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function comment($post, $comment) {
+  public function comment($post, $comment)
+  {
     $conn = new Database();
 
     $user = (int)$_SESSION['usersId'];
@@ -307,15 +314,15 @@ class Users
     $conn->bind(':comment', $comment);
 
     // execute
-    if($conn->execute()){
+    if ($conn->execute()) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
 
-  public static function showComment() {
+  public static function showComment()
+  {
     $conn = new Database();
 
     $id = (int)$_SESSION['usersId'];
@@ -327,4 +334,23 @@ class Users
     ');
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
- }
+
+  public function changePhoto($foto)
+  {
+    $conn = new Database();
+
+    $user = (int)$_SESSION['usersId'];
+
+    $conn->query('UPDATE usuario SET foto_perfil = :foto WHERE id_usuario = :ID');
+    // bind values
+    $conn->bind(':foto', $foto);
+    $conn->bind(':ID', $user);
+
+    // execute
+    if ($conn->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
