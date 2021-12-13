@@ -17,7 +17,7 @@ function readFile(e) {
 	reader = new FileReader()
 	reader.onload = function (e) {
 		document.getElementById('fileDragData').value = e.target.result
-        
+
 		document.getElementById('postPreview').src = e.target.result
 	}
 	document.getElementById('labelFile').innerHTML = 'Arquivo selecionado'
@@ -41,9 +41,3 @@ holder.ondragleave = function () {
 }
 
 submit = document.getElementById('publish');
-
-submit.addEventListener('click', () => {
-	if (document.getElementById('inputBanner').files.length == 0) {
-		document.getElementById('alert').innerHTML = "* Selecione um arquivo";
-	}
-})

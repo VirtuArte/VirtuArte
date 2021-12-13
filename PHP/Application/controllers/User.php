@@ -159,7 +159,7 @@ class User extends Controller
       flash("login", "Usuário não encontrado.");
       $this->view('user/login');
     }
-    
+
     header('Location: /user/feed');
   }
 
@@ -196,9 +196,9 @@ class User extends Controller
 
   public function message()
   {
-    if(isset($_POST['text'])){
+    if (isset($_POST['text'])) {
       $mensagem = $_POST['text'];
-  
+
       $Users = $this->model('Users'); // é retornado o model Users()
       $data = $Users->bot($mensagem);
       $this->view('user/message', ['users' => $data]);
@@ -254,11 +254,10 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
-      
-      if($status == 'follow'){
+
+      if ($status == 'follow') {
         $Users->follow($id);
-      }
-      else if($status = 'unfollow'){
+      } else if ($status = 'unfollow') {
         $Users->unfollow($id);
       }
 
@@ -278,12 +277,11 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
-      
-      if($status == 'like'){
+
+      if ($status == 'like') {
         // echo 'like';
         $Users->toLike($id);
-      }
-      else if($status = 'notLike'){
+      } else if ($status = 'notLike') {
         // echo 'notLike';
         $Users->notLike($id);
       }
@@ -313,5 +311,16 @@ class User extends Controller
       header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
   }
-}
 
+  public function deletePost($post = null)
+  {
+
+    $Users = $this->model('Users');
+
+    $Users->delete($post);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
+}
