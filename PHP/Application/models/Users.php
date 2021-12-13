@@ -295,7 +295,7 @@ class Users
     FROM publicacao as post 
     RIGHT JOIN curte 
     ON post.id_publicacao = curte.fk_publicacao_id_publicacao 
-    WHERE curtir = 1 AND post.fk_usuario_id_usuario = :ID', array(
+    WHERE curtir = 1 AND curte.fk_usuario_id_usuario = :ID', array(
       ':ID' => $id
     ));
     return $result->fetchAll(PDO::FETCH_ASSOC);
@@ -345,6 +345,16 @@ class Users
     // bind values
     $conn->bind(':foto', $foto);
     $conn->bind(':ID', $user);
+  }
+  
+  public function delete($id)
+  {
+    $conn = new Database();
+
+    $conn->query('DELETE from publicacao 
+    WHERE id_publicacao = :post');
+    // bind values
+    $conn->bind(':post', $id);
 
     // execute
     if ($conn->execute()) {

@@ -17,7 +17,7 @@ function readFile(e) {
 	reader = new FileReader()
 	reader.onload = function (e) {
 		document.getElementById('fileDragData').value = e.target.result
-        
+
 		document.getElementById('postPreview').src = e.target.result
 	}
 	document.getElementById('labelFile').innerHTML = 'Arquivo selecionado'
