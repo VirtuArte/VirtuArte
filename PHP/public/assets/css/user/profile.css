@@ -137,17 +137,49 @@
     top: 31.5rem;
   }
 
-  #follow {
+  #follow, .follow-button {
     width: 90%;
     color: white;
-    background-color: hsl(271, 50%, 76%);
-    border: hsl(271, 50%, 76%);
+    background-color: var(--lilac);
+    border: 1px solid var(--lilac);
     border-radius: 0.5rem;
     padding: 0.25rem 0;
     margin-top: 0.5rem;
+    transition: 0.2s;
   }
 
   #follow:hover {
-    background-color: hsl(282, 44%, 55%);
-    border: hsl(282, 44%, 55%);
+    background-color: var(--purple);
+    border: 1px solid var(--purple);
+  }
+
+  .follow-button{
+    color: var(--purple);
+    background-color: transparent;
+    border: 1px solid var(--purple);
+    transition: 0.2s;
+  }
+
+  .follow-button:hover{
+    transform: scale(1.02);
+  }
+
+  .following, .following:hover{
+    color: white !important;
+    background-color: var(--purple);
+    border: var(--purple);
+  }
+
+  .profilePicFollowing{
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+  }
+
+  .modal-body.seguindo{
+    font-size: 1.5rem;
+  }
+
+  .color-purple{
+    color: var(--purple);
   }

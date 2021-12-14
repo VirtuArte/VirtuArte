@@ -9,7 +9,7 @@ $conn = mysqli_connect("localhost", "virtuarteuser", "virtuartepassword", "virtu
 
 if($_POST['nivel'] == 1){
     $texto = strtolower($_POST['text']);
-    if(trim($texto) != '' || null){
+    if(trim($texto) != '' && trim($texto) != null){
         if($texto == 'oi' || $texto == 'olá' || $texto == 'bom dia' || $texto == 'boa tarde' || $texto == 'boa noite'){
             echo "<p class='text-break'>Que estado você pretende visitar?</p>";
         }else{
@@ -17,13 +17,13 @@ if($_POST['nivel'] == 1){
         }
     }
     else{
-        echo "Hmm, acho que não entendi. Tente responder novamente.";
+        echo "Hmm, acho que não entendi";
     }
 }
 if($_POST['nivel'] == 2){
     $estado = mysqli_real_escape_string($conn, $_POST['estado']);
 
-    if(trim($estado) != '' || null){
+    if(trim($estado) != '' && trim($estado) != null){
         $check_data = "SELECT nome FROM estado WHERE nome LIKE '%$estado%'";
 
         $run_query = mysqli_query($conn, $check_data) or die("Error");
@@ -35,7 +35,7 @@ if($_POST['nivel'] == 2){
         }
     }
     else{
-        echo "Hmm, acho que não entendi. Tente responder novamente.";
+        echo "Hmm, acho que não entendi";
     }
 }
 // if($_POST['nivel'] == 3){
@@ -45,7 +45,7 @@ if($_POST['nivel'] == 3){
     $estado = mysqli_real_escape_string($conn, $_POST['estado']);
     $cidade = mysqli_real_escape_string($conn, $_POST['cidade']);
 
-    if(trim($estado) != '' || null){
+    if(trim($cidade) != '' && trim($cidade) != null){
     $check_data = "SELECT nome FROM cidade WHERE nome LIKE '%$cidade%'";
 
     $run_query = mysqli_query($conn, $check_data) or die("Error");
@@ -94,7 +94,7 @@ if($_POST['nivel'] == 3){
         }
     }
     else{
-        echo "Hmm, acho que não entendi. Tente responder novamente.";
+        echo "Hmm, acho que não entendi";
     }
     
 }

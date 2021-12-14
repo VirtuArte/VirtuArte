@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/assets/css/index/index.css">
 
+<?php if(!isset($_SESSION['usersId'])): ?>
 <section id="signup" class="h-100 w-100 container">
     <div class="row align-items-center mt-5">
         <div class="modal-body p-0 row bg-white">
@@ -88,9 +89,11 @@
     </div>
 </section>
 
-<script>
- 
-</script>
+<?php else: ?>
+  <?php 
+    header('Location: /user/feed');
+  ?>
+<?php endif; ?>  
 
 <!-- <link rel="stylesheet" href="/assets/css/index/index.css"> -->
 <script src="/assets/js/index/index.js"></script>

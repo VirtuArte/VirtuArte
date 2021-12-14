@@ -117,7 +117,7 @@
                                     <div class="col-6">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="Escreva uma legenda.."
-                                                id="floatingTextarea" name="legend" maxlength="550"></textarea>
+                                                id="floatingTextarea" name="legend" maxlength="550" required></textarea>
                                             <label for="floatingTextarea">Escreva uma legenda...</label>
                                         </div>
                                     </div>
@@ -253,9 +253,9 @@
         <?php break;
             endforeach; ?>
 
-        <main>
+        <main class="w-100">
             <section class="mx-5 feed w-100 row justify-content-center" style="margin-top: -3rem;">
-                <?php if (sizeof($data['post']) == 0) { ?>
+                <?php if (sizeof($data['feed']) == 0) { ?>
                 <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
                     <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
                     <h2>Ainda não há publicações</h2>
@@ -308,7 +308,7 @@
                                 <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status == 'like' ? 'notLike' : 'like' ?>"
                                     id="btn-like">
                                     <img style="width: 24px; height: 22px"
-                                        src="/assets/img/<?= $status == 'like' ? 'like-active.png' : 'like-disabled.png' ?>"
+                                        src="/assets/img/<?= $status == 'like' ? 'liked.png' : 'notliked.png' ?>"
                                         alt="Botão de like">
                                 </a>
                             </div>

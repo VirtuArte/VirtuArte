@@ -503,7 +503,8 @@ button.accordion-button.collapsed::after {
 }
 
 .dragData,
-#previewArea{
+#previewArea, 
+#previewPhoto {
   display: none;
 }
 

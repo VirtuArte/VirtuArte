@@ -51,7 +51,8 @@ class User extends Controller
       $following = $Users->following();
       $liked = $Users->liked();
       $showComment = $Users->showComment();
-      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment]);
+      $address = $Users->getCompleteAddress($id);
+      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment, 'address' => $address]);
     } else {
       $this->pageNotFound();
     }

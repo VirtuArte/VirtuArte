@@ -81,7 +81,7 @@
                       <img src="/assets/img/vitu-chat.png" alt="">
                     </div>
                     <div class="msg-header">
-                      <p class="text-break">Olá, eu sou o Vitu! Em que posso te ajudar?</p>
+                      <p class="text-break">Olá, eu sou o Vitu!</p>
                       <input type="hidden" id="nivel" value="<?= $nivelChat ?>">
                     </div>
                   </div>
@@ -231,18 +231,22 @@
           $nivel++;
           $("#nivel").val($nivel);
 
+          // console.log($nivel)
 
-          console.log($nivel)
+          if($value != "oi" && $value != "ola" && $value != "olá" && $value != "oie" && $value != "oii" && $value != "ooi" && $value != "hello" && $value != "hi" && $value != "hey" && $value != "coé" && $value != "iai" && $value != "eai"){
+            if($nivel == 2){
+              $estado = $value;
+            }
+            if($nivel == 3){
+              $cidade = $value;
+            }
+            if($nivel == 4){
+              $preferencia = $value;
+            }
+          }
 
-          if($nivel == 2){
-            $estado = $value;
-          }
-          if($nivel == 3){
-            $cidade = $value;
-          }
-          if($nivel == 4){
-            $preferencia = $value;
-          }
+          console.log("Estado: "+$estado);
+          console.log("Cidade: "+$cidade);
           
           // start ajax code
           $.ajax({
@@ -251,11 +255,21 @@
             // data: 'text='+$value,
             data: {text: $value, nivel: $nivel, estado: $estado, cidade: $cidade, preferencia: $preferencia},
             success: function(result){
-              if(result == "Desculpe, não consegui te entender" || result == "Desculpe, não encontrei informações relacionadas"){
+              $default = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
+              if($value == "oi" || $value == "ola" || $value == "oie" || $value == "oii" || $value == "ooi" || $value == "hello" || $value == "hi" || $value == "hey" || $value == "coé" || $value == "iai" || $value == "eai"){
+                // $nivel--;
+                // $("#nivel").val($nivel);
+
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">Olá</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
+              }
+              if(result == "Desculpe, não consegui te entender" || result == "Desculpe, não encontrei informações relacionadas" || result == "Hmm, acho que não entendi"){
                 $nivel--;
                 $("#nivel").val($nivel);
 
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente.</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
@@ -272,14 +286,17 @@
                 $(".form").scrollTop($(".form")[0].scrollHeight);
               }
               else if (result == "Foi um prazer te ajudar =D"){
+                $estado       = '';
+                $cidade       = '';
+                $preferencia  = '';
                 $nivel = 1;
                 $("#nivel").val($nivel);
                 $replay = '<div class="bot-inbox inbox" id=default><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
                 $(".form").append($replay);
                 // $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
-                $teste = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
-                $default = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ `<a href="#" class="text-white" onclick="$('.form').html('${$teste}')">Recomeçar</a>` +'</p></div></div>';
+                // $default = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
+                // $default = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ `<a href="#" class="text-white" id="restart2" onclick="$('.form').html('${$default}')">Recomeçar</a>` +'</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
