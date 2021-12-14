@@ -11,6 +11,21 @@
               <?php flash('register') ?>
               <form action="/user/register" method="post">
                 <input type="hidden" name="type" value="register">
+                <div class="d-flex justify-content-between mb-3">
+                  <label for="">Você é </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="typeProfile" id="type1" value="pessoal" onclick="typeAccount()">
+                    <label class="form-check-label" for="type1">
+                      Pessoa Física
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="typeProfile" id="type2" value="comercial" onclick="typeAccount()">
+                    <label class="form-check-label" for="type2">
+                      Pessoa Jurídica
+                    </label>
+                  </div>
+                </div>
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="floatingSignInName" name="floatingSignInName" placeholder="Berga Motta">
                   <label for="floatingSignInName">Nome</label>
@@ -38,6 +53,9 @@
                     <i class="glyphicon glyphicon-eye-close me-2" id="show_eye"></i>
                     <i class="glyphicon glyphicon-eye-open me-2 d-none" id="hide_eye"></i>
                   </span>
+                </div>
+                <div id="additional" class="mt-4">
+                  
                 </div>
                 <div class="d-flex my-3 align-items-sm-baseline">
                   <input type="checkbox" name="floatingSignInTerms" id="floatingSignInTerms" required>
@@ -69,3 +87,10 @@
         </div>
     </div>
 </section>
+
+<script>
+ 
+</script>
+
+<!-- <link rel="stylesheet" href="/assets/css/index/index.css"> -->
+<script src="/assets/js/index/index.js"></script>

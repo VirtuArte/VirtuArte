@@ -75,13 +75,15 @@
           <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="wrapper">
               <div class="form">
-                <div class="bot-inbox inbox">
-                  <div class="icon">
-                    <img src="/assets/img/vitu-chat.png" alt="">
-                  </div>
-                  <div class="msg-header">
-                    <p class="text-break">Olá, eu sou o Vitu! Em que posso te ajudar?</p>
-                    <input type="hidden" id="nivel" value="<?= $nivelChat ?>">
+                <div class="chat">
+                  <div class="bot-inbox inbox">
+                    <div class="icon">
+                      <img src="/assets/img/vitu-chat.png" alt="">
+                    </div>
+                    <div class="msg-header">
+                      <p class="text-break">Olá, eu sou o Vitu! Em que posso te ajudar?</p>
+                      <input type="hidden" id="nivel" value="<?= $nivelChat ?>">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -217,6 +219,9 @@
     <script>
       $(document).ready(function(){
         $nivel = $("#nivel").val();
+          $estado       = '';
+          $cidade       = '';
+          $preferencia  = '';
         $("#send-btn").on("click", function(){
           $value = $("#data").val();
           $msg = '<div class="user-inbox inbox"><div class="msg-header"><p class="text-break">'+ $value +'</p></div></div>';
@@ -226,9 +231,8 @@
           $nivel++;
           $("#nivel").val($nivel);
 
-          $estado       = '';
-          $cidade       = '';
-          $preferencia  = '';
+
+          console.log($nivel)
 
           if($nivel == 2){
             $estado = $value;
@@ -268,18 +272,20 @@
                 $(".form").scrollTop($(".form")[0].scrollHeight);
               }
               else if (result == "Foi um prazer te ajudar =D"){
-                $nivel = 0;
+                $nivel = 1;
                 $("#nivel").val($nivel);
-
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox" id=default><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
                 $(".form").append($replay);
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
+                // $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
+                $teste = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
+                $default = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ `<a href="#" class="text-white" onclick="$('.form').html('${$teste}')">Recomeçar</a>` +'</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
               }
               else{
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header">'+ result +'</div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);

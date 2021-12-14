@@ -91,6 +91,137 @@ class Users
       return false;
     }
   }
+
+  public static function getLastProfile(){
+    $conn = new Database();
+    $profileId = $conn->executeQuery('SELECT id_usuario FROM `usuario` ORDER BY id_usuario DESC LIMIT 1');
+
+    return $profileId->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function registerPersonal(array $profileId)
+  {
+    $conn = new Database();
+
+    foreach($profileId as $id):
+      $registerPersonal = $conn->executeQuery('INSERT INTO `pessoa_fisica` (`fk_usuario_id_usuario`) VALUES (:ID);', array(
+        ':ID'    => $id['id_usuario']
+      ));
+    break;
+    endforeach;
+
+    return $registerPersonal->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function registerCommercial(array $profileId, $description, $value, $id_endereco)
+  {
+    $conn = new Database();
+
+    foreach($profileId as $id):
+      $registerPersonal = $conn->executeQuery('INSERT INTO `organizacao` (`descricao`, `valor`, `fk_usuario_id_usuario`, `fk_endereco_id_endereco`) VALUES (:descricao, :price, :ID, :endereco)', array(
+        ':descricao'  => $description,
+        ':price'      => $value,
+        ':ID'         => $id['id_usuario'],
+        ':endereco'   => $id_endereco
+      ));
+    break;
+    endforeach;
+
+    return $registerPersonal->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // fluxo estado
+  public static function getState($state)
+  {
+    $conn = new Database();
+
+    $registerState = $conn->executeQuery('SELECT id_estado FROM estado WHERE sigla = :uf', array(
+      ':uf'  => $state
+    ));
+
+    return $registerState->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // fluxo cidade
+  public static function getCity($city, $id_estado)
+  {
+    $conn = new Database();
+
+    $getCity = $conn->executeQuery('SELECT id_cidade FROM cidade WHERE nome = :city AND fk_estado_id_estado = :estado', array(
+      ':city'   => $city,
+      ':estado'  => $id_estado
+    ));
+
+    return $getCity->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function registerCity($city, $id_estado)
+  {
+    $conn = new Database();
+    
+    $registerCity = $conn->executeQuery('INSERT INTO `cidade` (`nome`, `fk_estado_id_estado`) VALUES (:city, :estado)', array(
+      ':city'   => $city,
+      ':estado'  => $id_estado
+    ));
+
+    return $registerCity->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // fluxo bairro
+  public static function getDistrict($district, $id_cidade)
+  {
+    $conn = new Database();
+
+    $getDistrict = $conn->executeQuery('SELECT id_bairro FROM bairro WHERE nome = :bairro AND fk_cidade_id_cidade = :cidade', array(
+      ':bairro'   => $district,
+      ':cidade'  => $id_cidade
+    ));
+
+    return $getDistrict->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function registerDistrict($district, $id_cidade)
+  {
+    $conn = new Database();
+    
+    $registerDistrict = $conn->executeQuery('INSERT INTO `bairro` (`nome`, `fk_cidade_id_cidade`) VALUES (:bairro, :cidade)', array(
+      ':bairro'   => $district,
+      ':cidade'  => $id_cidade
+    ));
+
+    return $registerDistrict->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  // fluxo endereco
+  public static function registerAddress($cep, $street, $number, $complement, $id_bairro)
+  {
+    $conn = new Database();
+    
+    $registerAddress = $conn->executeQuery('INSERT INTO `endereco` (`cep`, `logradouro`, `numero`, `complemento`, `fk_bairro_id_bairro`) VALUES (:cep, :logradouro, :numero, :complemento, :bairro)', array(
+      ':cep'          => $cep,
+      ':logradouro'   => $street,
+      ':numero'       => $number,
+      ':complemento'  => $complement,
+      ':bairro'       => $id_bairro
+    ));
+
+    return $registerAddress->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function getAddress($cep, $street, $number, $complement, $id_bairro)
+  {
+    $conn = new Database();
+
+    $getAddress = $conn->executeQuery('SELECT id_endereco FROM endereco WHERE cep = :cep AND logradouro = :logradouro AND numero = :numero AND complemento = :complemento AND fk_bairro_id_bairro = :bairro', array(
+      ':cep'          => $cep,
+      ':logradouro'   => $street,
+      ':numero'       => $number,
+      ':complemento'  => $complement,
+      ':bairro'       => $id_bairro
+    ));
+
+    return $getAddress->fetchAll(PDO::FETCH_ASSOC);
+  }
   
   public function login($nameOrEmail, $password, $row){
     if($row == false) return false;

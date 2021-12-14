@@ -151,3 +151,22 @@ span.input-group-text{
 .h-textarea{
     height: 7.5rem !important;
 }
+
+.form-check-input:checked {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
+.radius{
+    border-radius: 0.625rem;
+}
+
+#additional legend{
+    float: none;
+    width: fit-content;
+    padding: 0 0.5rem;
+    margin-bottom: 0;
+    line-height: inherit;
+    font-size: 1rem;
+    color: var(--lilac);
+}

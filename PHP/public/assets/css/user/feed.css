@@ -142,6 +142,13 @@ header .justify-items-center {
   height: 45px;
 }
 
+aside footer .nav-link, 
+footer .nav-link:hover, 
+aside footer span{
+  color: var(--gray);
+  font-size: 1.25rem;
+}
+
 .bg-purple {
   background-color: var(--purple);
   color: white;

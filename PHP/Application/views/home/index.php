@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="./assets/css/index/index.css">
 
+<?php if(!isset($_SESSION['usersId'])): ?>
 <div class="start-0 d-flex justify-content-center mt-5 pt-5">
   <img class="position-absolute" src="./assets/img/logo_home.png" />
   <img class="w-100" src="./assets/img/quadrados_home.png" alt="Quadrados Coloridos" />
@@ -22,5 +23,9 @@
     </div>    
   </div>
 </section>
-
+<?php else: ?>
+  <?php 
+    header('Location: /user/feed');
+  ?>
+<?php endif; ?>  
 <script src="./assets/js/index/index.js"></script>

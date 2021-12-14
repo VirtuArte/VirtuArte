@@ -146,11 +146,8 @@
                 </div>
             </div> -->
 
-            <div class="suggestions border-acordion mt-5">
-                <div class="container p-0">
-
-                    <!-- COLOCAR LINKS NOS @'S -->
-
+            <div class="position-relative" style="top: 43.5rem">
+                <div class="suggestions border-acordion mt-5 position-relative">
                     <div class="suggestion">
                         <div class="accordion border-acordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item border-acordion">
@@ -196,6 +193,29 @@
                         </div>
                     </div>
                 </div>
+                <footer>
+                    <div class="row justify-content-between mt-4">
+                        <div>
+                            <ul class="navbar-nav flex-row list-style-disc nav-footer">
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="/home#about" class="nav-link">Sobre</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdropContact">Contato</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="#" class="nav-link">Termos de Uso</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="#" class="nav-link">Políticas de Privacidade</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="me-3">
+                            &copy; 2021 - VirtuArte
+                        </span>
+                    </div>
+                </footer>
             </div>
         </aside>
         <?php break; endforeach; ?>

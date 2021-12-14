@@ -58,8 +58,6 @@ class User extends Controller
   //Register User
   public function register()
   {
-    //Process form
-
     //Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
@@ -70,6 +68,7 @@ class User extends Controller
       'nome'          => trim($_POST['floatingSignInName']),
       'senha'         => trim($_POST['floatingSignInPass']),
       'senhaConfirm'  => trim($_POST['floatingSignInConfirmPass']),
+      'type'          => $_POST['typeProfile']
       // 'foto_perfil' => trim($_POST['foto_perfil'])
     ];
 
@@ -116,6 +115,64 @@ class User extends Controller
 
     // Register User
     if ($Users->register($data)) {
+      $codProfile = $Users::getLastProfile();
+
+      
+      if($data['type'] == "comercial"){
+        $data = [
+          'description' => trim($_POST['floatingDescription']),
+          'value'       => trim($_POST['floatingValue']),
+          'cep'         => trim($_POST['floatingCep']),
+          'street'      => trim($_POST['floatingStreet']),
+          'number'      => trim($_POST['floatingNumber']),
+          'complement'  => trim($_POST['floatingComplement']),
+          'district'    => trim($_POST['floatingDistrict']),
+          'city'        => trim($_POST['floatingCity']),
+          'state'       => trim($_POST['floatingState'])
+        ];
+  
+        // fluxo estado
+        $state = $Users::getState($data['state']);
+        // var_dump($state);
+        foreach($state as $estado){
+          $id_estado = $estado['id_estado'];
+        }
+  
+        // fluxo cidade
+        $city = $Users::getCity($data['city'], $id_estado);
+        if(count($city) == 0){
+          $city = $Users::registerCity($data['city'], $id_estado);
+          $city = $Users::getCity($data['city'], $id_estado);
+        }
+        foreach($city as $cidade){
+          $id_cidade = $cidade['id_cidade'];
+        }
+  
+        // fluxo bairro
+        $district = $Users::getDistrict($data['district'], $id_cidade);
+        if(count($district) == 0){
+          $district = $Users::registerDistrict($data['district'], $id_cidade);
+          $district = $Users::getDistrict($data['district'], $id_cidade);
+        }
+        foreach($district as $bairro){
+          $id_bairro = $bairro['id_bairro'];
+        }
+
+        // fluxo endereço
+        $address = $Users::getAddress($data['cep'], $data['street'], $data['number'], $data['complement'], $id_bairro);
+        if(count($address) == 0){
+          $address = $Users::registerAddress($data['cep'], $data['street'], $data['number'], $data['complement'], $id_bairro);
+          $address = $Users::getAddress($data['cep'], $data['street'], $data['number'], $data['complement'], $id_bairro);
+        }
+        foreach($address as $endereco){
+          $id_endereco = $endereco['id_endereco'];
+        }
+        
+        $Users::registerCommercial((array)$codProfile, $data['description'], $data['value'], $id_endereco);
+      }
+      else if($data['type'] == "pessoal"){
+        $Users::registerPersonal((array)$codProfile);
+      }
       $this->view('user/login');
     } else {
       die("Oops... Algo de errado aconteceu.");
