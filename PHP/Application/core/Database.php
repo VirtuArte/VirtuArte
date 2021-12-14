@@ -11,7 +11,7 @@ class Database extends PDO
   private $DB_USER = 'virtuarteuser';
   private $DB_PASSWORD = 'virtuartepassword';
   private $DB_HOST = 'localhost';
-  private $DB_PORT = 3306;
+  private $DB_PORT = 3307;
 
   // will be de PDO object
   private $dbh;
@@ -41,7 +41,8 @@ class Database extends PDO
     }
   }
 
-  public function query(string $sql, ?int $fetchMode = null, ...$fetchModeArgs){
+  public function query(string $sql, ?int $fetchMode = null, ...$fetchModeArgs)
+  {
     $this->stmt = $this->dbh->prepare($sql);
   }
 

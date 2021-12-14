@@ -120,9 +120,9 @@
   }
   
   #btn-like, #btn-coment {
-  width: 3rem;
-  height: 3rem;
-  padding: 0.5rem 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.5rem 0.5rem;
   }
   
   .post-1{
@@ -135,4 +135,19 @@
 
   .chatbot{
     top: 31.5rem;
+  }
+
+  #follow {
+    width: 90%;
+    color: white;
+    background-color: hsl(271, 50%, 76%);
+    border: hsl(271, 50%, 76%);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0;
+    margin-top: 0.5rem;
+  }
+
+  #follow:hover {
+    background-color: hsl(282, 44%, 55%);
+    border: hsl(282, 44%, 55%);
   }

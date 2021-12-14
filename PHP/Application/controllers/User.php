@@ -49,7 +49,9 @@ class User extends Controller
       $posts = $Users->findPostsById($id);
       $suggestion = $Users->suggestionUser();
       $following = $Users->following();
-      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following]);
+      $liked = $Users->liked();
+      $showComment = $Users->showComment();
+      $this->view('user/profile', ['user' => $data, 'nav' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment]);
     } else {
       $this->pageNotFound();
     }
@@ -214,7 +216,7 @@ class User extends Controller
       flash("login", "Usuário não encontrado.");
       $this->view('user/login');
     }
-    
+
     header('Location: /user/feed');
   }
 
@@ -243,15 +245,17 @@ class User extends Controller
     $posts = $Users->findPostsById($_SESSION['usersId']);
     $suggestion = $Users->suggestionUser();
     $following = $Users->following();
+    $liked = $Users->liked();
+    $showComment = $Users->showComment();
     $feed = $Users->findAllPosts();
-    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'feed' => $feed]);
+    $this->view('user/feed', ['users' => $data, 'user' => $dataUser, 'post' => $posts, 'suggestion' => $suggestion, 'following' => $following, 'liked' => $liked, 'showComment' => $showComment, 'feed' => $feed]);
   }
 
   public function message()
   {
-    if(isset($_POST['text'])){
+    if (isset($_POST['text'])) {
       $mensagem = $_POST['text'];
-  
+
       $Users = $this->model('Users'); // é retornado o model Users()
       $data = $Users->bot($mensagem);
       $this->view('user/message', ['users' => $data]);
@@ -307,11 +311,10 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
-      
-      if($status == 'follow'){
+
+      if ($status == 'follow') {
         $Users->follow($id);
-      }
-      else if($status = 'unfollow'){
+      } else if ($status = 'unfollow') {
         $Users->unfollow($id);
       }
 
@@ -331,11 +334,12 @@ class User extends Controller
   {
     if (is_numeric($id)) {
       $Users = $this->model('Users');
-      
-      if($status == 'like'){
+
+      if ($status == 'like') {
+        // echo 'like';
         $Users->toLike($id);
-      }
-      else if($status = 'notLike'){
+      } else if ($status = 'notLike') {
+        // echo 'notLike';
         $Users->notLike($id);
       }
 
@@ -348,5 +352,49 @@ class User extends Controller
       // $this->pageNotFound();
     }
   }
-}
 
+  public function publishComment($post = null)
+  {
+    //Init data
+    $data = [
+      'comentario' => trim($_POST['comment']),
+    ];
+
+    $Users = $this->model('Users');
+
+    $Users->comment($post, $data['comentario']);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
+
+  public function publishPhotoProfile()
+  {
+    //Init data
+    $data = [
+      'foto' => trim($_POST['photoProfile']),
+    ];
+    
+    $Users = $this->model('Users');
+
+    $Users->changePhoto($data['foto']);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
+
+
+  public function deletePost($post = null)
+  {
+
+    $Users = $this->model('Users');
+
+    $Users->delete($post);
+
+    if (isset($_SERVER["HTTP_REFERER"])) {
+      header("Location: " . $_SERVER["HTTP_REFERER"]);
+    }
+  }
+}
