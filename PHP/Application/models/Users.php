@@ -225,6 +225,27 @@ class Users
 
     return $getAddress->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  public static function getCompleteAddress($id)
+  {
+    $conn = new Database();
+
+    $getAddress = $conn->executeQuery('SELECT ed.id_endereco, ed.logradouro, ed.numero, ed.complemento, ed.cep, br.id_bairro, br.nome as bairro, cd.id_cidade, cd.nome as cidade, es.id_estado, es.nome as estado, es.sigla
+    FROM endereco ed
+    LEFT JOIN bairro br
+    ON ed.fk_bairro_id_bairro = br.id_bairro
+    LEFT JOIN cidade cd
+    ON br.fk_cidade_id_cidade = cd.id_cidade
+    LEFT JOIN estado es
+    ON cd.fk_estado_id_estado = es.id_estado
+    LEFT JOIN organizacao org
+    ON org.fk_endereco_id_endereco = ed.id_endereco
+    WHERE org.fk_usuario_id_usuario = :id', array(
+      ':id'          => $id
+    ));
+
+    return $getAddress->fetchAll(PDO::FETCH_ASSOC);
+  }
   
   public function login($nameOrEmail, $password, $row){
     if($row == false) return false;

@@ -174,8 +174,8 @@
         </aside>
         <main class="mx-5 w-100">
             <?php foreach ($data['user'] as $user) : ?>
-                <div class="profile align-center d-flex bg-white">
-                    <div class="d-flex p-5">
+                <div class="profile align-center d-flex bg-white row">
+                    <div class="d-flex p-5 col-6">
                         <?php
                         $id = $_SESSION['usersId'];
                         if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") {
@@ -190,13 +190,11 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupPhoto01" onchange="readPhotoProfile(event)">
-                                                            <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
-                                                                <label for="inputPhoto" id="labelPhoto">Selecione o arquivo</label>
-                                                                <input type="file" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
-                                                                <span id="alert2"></span>
-                                                            </div>
+                                                    <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupPhoto01" onchange="readPhotoProfile(event)">
+                                                        <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
+                                                            <label for="inputPhoto" id="labelPhoto">Selecione o arquivo</label>
+                                                            <input type="file" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
+                                                            <span id="alert2"></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -223,9 +221,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-gray mx-3 profilePic position-relative" style="background-image: url('<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>')">
-                                <label id="labelChangePhoto" class="d-flex align-items-center justify-content-center profileLabel profilePic w-100 h-100 p-5 text-center" data-bs-toggle="modal" data-bs-target="#newPhotoProfile">Trocar foto de perfil</label>
-                                <!-- <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readPhotoProfile(event)"> -->
+                            <div class="bg-gray mx-3 profilePic position-relative" >
+                                <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePic">
+                                <label id="labelChangePhoto" class="position-absolute top-0 d-flex align-items-center justify-content-center profileLabel profilePic w-100 h-100 p-5 text-center" data-bs-toggle="modal" data-bs-target="#newPhotoProfile">Trocar foto de perfil</label>
                             </div>
                         <?php } else { ?>
                             <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePic">
@@ -257,14 +255,15 @@
                                                 <h5 class="modal-title" id="staticBackdropLabel">Seguindo</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body seguindo">
                                                 <?php foreach ($data['following'] as $following) { ?>
                                                     <div class="feed-posts position-relative w-post m-3 mt-0">
                                                         <div class="d-flex align-items-center justify-content-between">
-                                                            <div class="dates d-flex align-items-center gap-4">
-                                                                <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
-                                                                <div class="creator">
-                                                                    <h4><?= $following['nome'] ?></h4>
+                                                            <div class="sugest d-flex align-items-center">
+                                                                <a href="/user/profile/<?= $following['id_usuario'] ?>"><img src="<?= isset($following['foto_perfil']) ? $following['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicFollowing"></a>
+                                                                <div class="nome">
+                                                                    <a class="text-black links" href="/user/profile/<?= (int)$following['id_usuario'] ?>"><?= $following['nome'] ?></a>
+                                                                    <a class="text-black links" href="/user/profile/<?= (int)$following['id_usuario'] ?>">@<?= $following['username'] ?></a>
                                                                 </div>
                                                             </div>
                                                             <a href="/user/follow/<?= (int)$following['id_usuario'] ?>/unfollow" class="text-black links text-end"><span class="links">Deixar de seguir</span></a>
@@ -282,13 +281,35 @@
                                     </div>
                                 </div>
                                 <?php
-                                $id = $_SESSION['usersId'];
-                                if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") { ?>
-                                    <button id="follow" data-bs-toggle="modal" data-bs-target="#modalFollow">Seguindo</button>
+                                    $id = $_SESSION['usersId'];
+                                    if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") { 
+                                ?>
+                                <button id="follow" data-bs-toggle="modal" data-bs-target="#modalFollow">Seguindo</button>
+                                <?php } else { ?>
+                                <?php 
+                                    $url = explode('/', $_SERVER['REQUEST_URI']);
+                                    $id_perfil = $url[3];
+                                    $status = "follow";
+                                    if (isset($data['following'])) {
+                                        foreach ($data['following'] as $folowing) {
+                                            if ($folowing['id_usuario'] == $id_perfil) {
+                                                $status = "unfollow";
+                                            }
+                                        }
+                                    }
+                                 ?>
+                                <a href="/user/follow/<?= $id_perfil ?>/<?= $status ?>" class="links text-center follow-button <?= $status == 'unfollow' ? 'following' : '' ?>"><?= $status == 'follow' ? 'Seguir' : 'Deixar de seguir' ?></a>
                                 <?php } ?>
                             </div>
                         </div>
-
+                    </div>
+                    <div id="address" class="row p-5 col-4">
+                        <div>
+                            <h4 class="color-purple">Venha conhecer</h4>
+                            <?php foreach ($data['address'] as $address) : ?>
+                                <?= $address['logradouro'].', '.$address['numero'].' - '.$address['bairro'].', '.$address['cidade'].' - '.$address['sigla'].', '.$address['cep'] ?>
+                            <?php break; endforeach; ?>
+                        </div>
                     </div>
                 </div>
 
@@ -345,7 +366,7 @@
                                             }
                                             ?>
                                             <a href="/user/toLike/<?= (int)$post['id_publicacao'] ?>/<?= $status == 'like' ? 'notLike' : 'like' ?>" id="btn-like">
-                                                <img style="width: 24px; height: 22px" src="/assets/img/<?= $status == 'like' ? 'like-active.png' : 'like-disabled.png' ?>" alt="Botão de like">
+                                                <img style="width: 20px; height: 20px" src="/assets/img/<?= $status == 'like' ? 'liked.png' : 'notliked.png' ?>" alt="Botão de like">
                                             </a>
                                         </div>
 
