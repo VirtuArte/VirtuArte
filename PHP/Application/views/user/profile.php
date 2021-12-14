@@ -76,7 +76,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-floating">
-                                            <textarea class="form-control w-100 resize-none" placeholder="Escreva uma legenda.." id="floatingTextarea" name="legend" maxlength="550"></textarea>
+                                            <textarea class="form-control w-100 resize-none" placeholder="Escreva uma legenda.." id="floatingTextarea" name="legend" maxlength="550" required></textarea>
                                             <label for="floatingTextarea">Escreva uma legenda...</label>
                                         </div>
                                     </div>
