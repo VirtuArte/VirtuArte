@@ -6,6 +6,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
+    <link rel="icon" href="/assets/img/icon.png" size=“16x16" >
     <title>VirtuArte</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
@@ -291,7 +292,7 @@
                 $nivel--;
                 $("#nivel").val($nivel);
 
-                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente.</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'. Tente responder novamente ou digite "sair" para recomeçar.</p></div></div>';
                 $(".form").append($replay);
                 // when chat goes down the scroll bar automatically comes to the bottom
                 $(".form").scrollTop($(".form")[0].scrollHeight);
@@ -315,6 +316,22 @@
                 $("#nivel").val($nivel);
                 $replay = '<div class="bot-inbox inbox" id=default><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
                 $(".form").append($replay);
+                // $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
+                // $default = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
+                // $default = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';
+                $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ `<a href="#" class="text-white" id="restart2" onclick="$('.form').html('${$default}')">Recomeçar</a>` +'</p></div></div>';
+                $(".form").append($replay);
+                // when chat goes down the scroll bar automatically comes to the bottom
+                $(".form").scrollTop($(".form")[0].scrollHeight);
+              }
+              else if (result == "Recomeçando"){
+                $estado       = '';
+                $cidade       = '';
+                $preferencia  = '';
+                $nivel = 1;
+                $("#nivel").val($nivel);
+                // $replay = '<div class="bot-inbox inbox" id=default><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ result +'</p></div></div>';
+                // $(".form").append($replay);
                 // $replay = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ '<a href="#" class="text-white" onclick="window.location.reload()">Recomeçar</a>' +'</p></div></div>';
                 // $default = `<div class=inbox bot-inbox><div class=icon><img src=/assets/img/vitu-chat.png></div><div class=msg-header><p class=text-break>Que estado você pretende visitar?</p></div></div>`;
                 // $default = '<div class="bot-inbox inbox"><div class="icon"><img src="/assets/img/vitu-chat.png" alt=""></div><div class="msg-header"><p class="text-break">'+ 'Que estado você pretende visitar?' +'</p></div></div>';

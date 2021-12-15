@@ -536,10 +536,10 @@
                                                                 <?php } ?>
                                                             <?php } ?>
                                                             <?php if ($comment['id_interacao'] < 1) { ?>
-                                                                <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
+                                                                <!-- <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
                                                                     <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
                                                                     <h2>Ainda não há comentários</h2>
-                                                                </div>
+                                                                </div> -->
                                                             <?php } ?>
                                                         </div>
                                                         <div class="modal-footer">
