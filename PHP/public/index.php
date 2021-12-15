@@ -43,7 +43,7 @@
                   <a href="/home#about" class="nav-link text-dark">Sobre</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#staticBackdropContact">Contato</a>
+                  <a class="nav-link text-dark" data-bs-toggle="modal" data-bs-target="#staticBackdropContact" id="contact">Contato</a>
                 </li>
               </ul>
               <div class="button d-flex justify-content-end mb-2 mt-2">

@@ -170,3 +170,7 @@ span.input-group-text{
     font-size: 1rem;
     color: var(--lilac);
 }
+
+#contact {
+    cursor: pointer;
+}
