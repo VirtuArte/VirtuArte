@@ -83,17 +83,17 @@ class User extends Controller
       flash("register", "Por favor, preencha todos os campos.");
       // redirect("../../public/index.php");
       $this->view('user/signup');
-    }
+    } else 
 
     if (!preg_match("/^[a-zA-Z0-9]*$/", $data['username'])) {
       flash("register", "Nome de usuário inválido.");
       $this->view('user/signup');
-    }
+    } else
 
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
       flash("register", "E-mail inválido.");
       $this->view('user/signup');
-    }
+    } else
 
     if (strlen($data['senha']) < 6) {
       flash("register", "Senha inválida.");
@@ -208,6 +208,7 @@ class User extends Controller
       if ($loggedInUser) {
         //Create session
         $this->createUserSession($loggedInUser);
+        header('Location: /user/feed');
       } else {
         flash("login", "Senha incorreta.");
         $this->view('user/login');
@@ -217,7 +218,6 @@ class User extends Controller
       $this->view('user/login');
     }
 
-    header('Location: /user/feed');
   }
 
   public function createUserSession($user)

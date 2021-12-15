@@ -149,7 +149,7 @@
                                         <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupFile01" onchange="readFile(event)">
                                             <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
                                                 <label for="inputBanner" id="labelFile">Selecione o arquivo</label>
-                                                <input type="file" class="d-none" id="inputBanner" name="inputBanner" onchange="readFile(event)" required>
+                                                <input type="file" accept="image/*" class="d-none" id="inputBanner" name="inputBanner" onchange="readFile(event)" required>
                                                 <span id="alert"></span>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@
                                                     <div class="input-group mb-3 select dz-clickable form-control d-flex justify-content-center" id="inputGroupPhoto01" onchange="readPhotoProfile(event)">
                                                         <div class="dz-default dz-message d-flex flex-column justify-content-center align-items-center" data-dz-message="">
                                                             <label for="inputPhoto" id="labelPhoto">Selecione o arquivo</label>
-                                                            <input type="file" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
+                                                            <input type="file" accept="image/*" class="d-none" id="inputPhoto" name="inputPhoto" onchange="readPhotoProfile(event)" required>
                                                             <span id="alert2"></span>
                                                         </div>
                                                     </div>
