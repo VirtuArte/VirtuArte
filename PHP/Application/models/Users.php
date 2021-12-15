@@ -95,7 +95,8 @@ class Users
     }
   }
 
-  public static function getLastProfile(){
+  public static function getLastProfile()
+  {
     $conn = new Database();
     $profileId = $conn->executeQuery('SELECT id_usuario FROM `usuario` ORDER BY id_usuario DESC LIMIT 1');
 
@@ -106,11 +107,11 @@ class Users
   {
     $conn = new Database();
 
-    foreach($profileId as $id):
+    foreach ($profileId as $id) :
       $registerPersonal = $conn->executeQuery('INSERT INTO `pessoa_fisica` (`fk_usuario_id_usuario`) VALUES (:ID);', array(
         ':ID'    => $id['id_usuario']
       ));
-    break;
+      break;
     endforeach;
 
     return $registerPersonal->fetchAll(PDO::FETCH_ASSOC);
@@ -120,14 +121,14 @@ class Users
   {
     $conn = new Database();
 
-    foreach($profileId as $id):
+    foreach ($profileId as $id) :
       $registerPersonal = $conn->executeQuery('INSERT INTO `organizacao` (`descricao`, `valor`, `fk_usuario_id_usuario`, `fk_endereco_id_endereco`) VALUES (:descricao, :price, :ID, :endereco)', array(
         ':descricao'  => $description,
         ':price'      => $value,
         ':ID'         => $id['id_usuario'],
         ':endereco'   => $id_endereco
       ));
-    break;
+      break;
     endforeach;
 
     return $registerPersonal->fetchAll(PDO::FETCH_ASSOC);
@@ -161,7 +162,7 @@ class Users
   public static function registerCity($city, $id_estado)
   {
     $conn = new Database();
-    
+
     $registerCity = $conn->executeQuery('INSERT INTO `cidade` (`nome`, `fk_estado_id_estado`) VALUES (:city, :estado)', array(
       ':city'   => $city,
       ':estado'  => $id_estado
@@ -186,7 +187,7 @@ class Users
   public static function registerDistrict($district, $id_cidade)
   {
     $conn = new Database();
-    
+
     $registerDistrict = $conn->executeQuery('INSERT INTO `bairro` (`nome`, `fk_cidade_id_cidade`) VALUES (:bairro, :cidade)', array(
       ':bairro'   => $district,
       ':cidade'  => $id_cidade
@@ -199,7 +200,7 @@ class Users
   public static function registerAddress($cep, $street, $number, $complement, $id_bairro)
   {
     $conn = new Database();
-    
+
     $registerAddress = $conn->executeQuery('INSERT INTO `endereco` (`cep`, `logradouro`, `numero`, `complemento`, `fk_bairro_id_bairro`) VALUES (:cep, :logradouro, :numero, :complemento, :bairro)', array(
       ':cep'          => $cep,
       ':logradouro'   => $street,
@@ -246,9 +247,10 @@ class Users
 
     return $getAddress->fetchAll(PDO::FETCH_ASSOC);
   }
-  
-  public function login($nameOrEmail, $password, $row){
-    if($row == false) return false;
+
+  public function login($nameOrEmail, $password, $row)
+  {
+    if ($row == false) return false;
 
     $hashedPassword = $row->senha;
     if (password_verify($password, $hashedPassword)) {
@@ -310,7 +312,7 @@ class Users
   public static function findPostsById(int $id)
   {
     $conn = new Database();
-    $result = $conn->executeQuery('SELECT id_publicacao, midia, legenda, data_publicacao FROM publicacao WHERE fk_usuario_id_usuario = :ID', array(
+    $result = $conn->executeQuery('SELECT id_publicacao, midia, legenda, data_publicacao FROM publicacao WHERE fk_usuario_id_usuario = :ID ORDER BY data_publicacao DESC', array(
       ':ID' => $id
     ));
 
