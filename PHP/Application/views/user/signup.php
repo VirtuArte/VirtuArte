@@ -15,7 +15,7 @@
                 <div class="d-flex justify-content-between mb-3">
                   <label for="">Você é </label>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="typeProfile" id="type1" value="pessoal" onclick="typeAccount()">
+                    <input class="form-check-input" type="radio" name="typeProfile" id="type1" value="pessoal" onclick="typeAccount()" required>
                     <label class="form-check-label" for="type1">
                       Pessoa Física
                     </label>

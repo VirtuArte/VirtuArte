@@ -208,6 +208,9 @@ aside footer span{
   color: var(--purple);
 }
 
+.search-nav{
+  margin: 0 2rem;
+}
 
 .search input {
     width: 80%;
@@ -335,7 +338,7 @@ button.accordion-button.collapsed::after {
     min-width: 30%;
     width: fit-content;
     border-radius: 0.7rem;
-    padding: 0.6rem 1rem 0.2rem 1rem;
+    padding: 0.6rem 1rem 0.6rem 1rem;
     line-height: 0.7rem;
     top: 3rem;
     left: 2rem;
@@ -372,7 +375,7 @@ button.accordion-button.collapsed::after {
   height: 250px !important;
 }
 
-.background img {
+.img-radius {
     border-radius: 0.625rem;
 }
 
@@ -524,8 +527,8 @@ button.accordion-button.collapsed::after {
 
 .modal textarea#comment {
   width: 80%;
-  min-height: 1rem !important;
-  padding: 0.5rem !important;
+  min-height: 0.1rem !important;
+  padding: 0.025rem 0.75rem !important;
   border: 1px solid var(--gray) !important;
   border-radius: 0.5rem;
   resize: none;
@@ -538,6 +541,48 @@ button.accordion-button.collapsed::after {
   box-shadow: 0 0 0 0 !important;
 }
 
+.btn-comment{
+  /* position: absolute;
+  right: 5px;
+  top: 50%; */
+  height: 100%;
+  width: 65px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  /* opacity: 0;
+  pointer-events: none; */
+  border-radius: 3px;
+  background: var(--lilac);
+  border: 1px solid var(--lilac);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-comment:hover{
+  color: #fff !important;
+  background: var(--purple);
+  text-decoration: none !important;
+}
+
+.nav-mobile,
+.suggestions-mobile {
+  display: none;
+}
+
+.footer-inside{
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+}
+
+.footer-inside li{
+  list-style: none;
+}
+
 @media (max-width: 992px) {
   .feed {
     flex-direction: column !important;
@@ -545,6 +590,39 @@ button.accordion-button.collapsed::after {
 }
 
 @media (max-width: 768px) {
+  /* navbar superior */
+  .order1{
+    order: 2 !important;
+  }
+
+  .order2{
+    order: 1 !important;
+  }
+
+  .order3{
+    order: 3 !important;
+  }
+
+  .order4{
+    order: 4 !important;
+  }
+
+  .search-nav{
+    margin: 5rem;
+  }
+
+  .nav-mobile{
+    display: flex;
+  }
+
+  .suggestions-mobile{
+    display: block;
+  }
+  
+  .nav-aside{
+    display: none;
+  }
+
   footer .navbar-nav.flex-row {
     flex-direction: column !important;
     list-style: none;

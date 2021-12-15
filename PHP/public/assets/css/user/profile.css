@@ -70,7 +70,7 @@
   min-width: 30%;
   width: fit-content;
   border-radius: 0.7rem;
-  padding: 0.6rem 1rem 0.2rem 1rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
   line-height: 0.7rem;
   top: 3rem;
   left: 2rem;
@@ -89,9 +89,9 @@
   color: var(--gray);
   }
   
-  .background img {
+  /* .background img {
   border-radius: 0.625rem;
-  }
+  } */
   
   .legend {
   left: 0 !important;
@@ -182,4 +182,22 @@
 
   .color-purple{
     color: var(--purple);
+  }
+  
+  @media (max-width: 992px) {
+    .profile.bg-white{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .profile.bg-white div.col-profile{
+      width: 100% !important;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profilePic{
+      width: 125px;
+      height: 125px;
+    }
   }

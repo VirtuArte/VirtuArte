@@ -105,19 +105,18 @@ class User extends Controller
 
     $Users = $this->model('Users');
 
+    $data['senha'] = password_hash($data['senha'], PASSWORD_DEFAULT);
     //User with the same email or password already exists
     if ($Users->findUserByEmailOrUsername($data['email'], $data['username'])) {
       flash("register", "E-mail ou Nome de Usuário já cadastrados.");
+      
       $this->view('user/signup');
-    }
-
-    //Passed all validation checks.
-    //Now going to hash password
-    $data['senha'] = password_hash($data['senha'], PASSWORD_DEFAULT);
-
-
-    // Register User
-    if ($Users->register($data)) {
+      //Passed all validation checks.
+      //Now going to hash password
+  
+  
+      // Register User
+    } else if ($Users->register($data)) {
       $codProfile = $Users::getLastProfile();
 
       

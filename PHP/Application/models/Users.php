@@ -478,10 +478,12 @@ class Users
 
     $id = (int)$_SESSION['usersId'];
 
-    $result = $conn->executeQuery('SELECT itg.fk_publicacao_id_publicacao, itg.fk_usuario_id_usuario, itg.comentario, itg.id_interacao 
-    FROM interage as itg 
-    RIGHT JOIN publicacao as pu
-    ON itg.fk_publicacao_id_publicacao = pu.id_publicacao 
+    $result = $conn->executeQuery('SELECT itg.fk_publicacao_id_publicacao, itg.fk_usuario_id_usuario, itg.comentario, itg.id_interacao, perfil.nome, perfil.foto_perfil
+    FROM interage itg 
+    RIGHT JOIN publicacao post
+    ON itg.fk_publicacao_id_publicacao = post.id_publicacao 
+    RIGHT JOIN usuario perfil
+    ON itg.fk_usuario_id_usuario = perfil.id_usuario
     ');
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }

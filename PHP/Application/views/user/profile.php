@@ -1,51 +1,116 @@
 <link rel="stylesheet" href="/assets/css/user/profile.css">
-<script src="/assets/js/user/feed.js"></script>
+<!-- <script src="/assets/js/user/feed.js"></script> -->
+
+<?php if (isset($_SESSION['usersId'])) { ?>
 
 <header>
-    <?php foreach ($data['user'] as $user) : ?>
-        <nav class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
-            <div class="container justify-content-between">
-                <a class="navbar-brand" href="/user/feed">
-                    <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
-                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="search offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
-                        <input type="search" id="bar-search" name="bar-search" placeholder="Buscar no VirtuArte">
-                    </div>
+    <?php foreach ($data['nav'] as $user) : ?>
+    <nav
+        class="navbar navbar-expand-md navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
+        <div class="container justify-content-between">
+            <a class="navbar-brand" href="/user/feed">
+                <img class="logo" src="/assets/img/logo.png" alt="Logo VirtuArte">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 1.5rem">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
                 </div>
-                <div class="nav-right d-flex align-items-center">
-                    <?php foreach ($data['nav'] as $nav) : ?>
-                        <img src="<?= isset($nav['foto_perfil']) ? $nav['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicNav">
-                    <?php break;
-                    endforeach; ?>
-                    <div class="dropdown little-menu">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php
-                            $name = explode(" ", $_SESSION['usersName']);
-                            $firstName = $name[0];
-                            $lastName = sizeof($name) > 1 ? $name[sizeof($name) - 1] : ''
-                            ?>
-                            <?= $name[0] ?>
-                            <?= sizeof($name) > 1 ? $name[sizeof($name) - 1] : '' ?>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="/user/profile/<?= (int)$_SESSION['usersId'] ?>">Abrir
-                                    perfil</a></li>
-                            <li><a class="dropdown-item text-danger" href="/user/logout">Sair</a></li>
-                        </ul>
+                <div class="search offcanvas-body navbar-collapse collapse d-grid align-content-center justify-content-center justify-items-center">
+                    <input type="search" id="bar-search" name="bar-search" placeholder="Buscar no VirtuArte" class="order1 search-nav">
+                    <div class="nav-right d-flex align-items-center order2 nav-top">
+                        <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>"
+                            class="profilePicNav">
+                        <div class="dropdown little-menu">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php
+                                        $name = explode(" ", $_SESSION['usersName']);
+                                        $firstName = $name[0];
+                                        $lastName = sizeof($name) > 1 ? $name[sizeof($name) - 1] : ''
+                                        ?>
+                                <?= $name[0] ?>
+                                <?= sizeof($name) > 1 ? $name[sizeof($name) - 1] : '' ?>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="/user/profile/<?= (int)$_SESSION['usersId'] ?>">Abrir
+                                        perfil</a></li>
+                                <li><a class="dropdown-item text-danger" href="/user/logout">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="navegation-profile flex-column gap-4 pb-4 order3 nav-mobile">
+                        <a class="d-flex align-items-center" href="/user/feed"><img class="pe-2" src="/assets/img/icon-home.svg" alt="Ícone home"> Página inicial</a>
+                        <a class="d-flex align-items-center" href="/user/profile/<?= (int)$_SESSION['usersId'] ?>"><img class="pe-2" src="/assets/img/icon-profile.svg" alt="Ícone perfil"> Perfil</a>
+                        <a class="d-flex align-items-center" href="" data-bs-toggle="modal" data-bs-target="#newPost"><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação</a>
+                        <a class="d-flex align-items-center" href=""><img class="pe-2" src="/assets/img/icon-config.svg" alt="Ícone configurações">Configurações</a>
+                    </div>
+                    <div class="suggestions border-acordion my-5 position-relative order4 suggestions-mobile">
+                        <div class="suggestion">
+                            <div class="accordion border-acordion" id="accordionPanelsStayOpenExample">
+                                <div class="accordion-item border-acordion">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button border-acordion" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                            aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                            Sugestões para você
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne"
+                                        class="accordion-collapse collapse position-relative"
+                                        aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            <div>
+                                                <?php foreach ($data['suggestion'] as $suggestion) { ?>
+                                                <?php
+                                                            $suggestionName = explode(" ", $suggestion['nome']);
+                                                            $firstSuggestionName = $suggestionName[0];
+                                                            $lastSuggestionName = sizeof($suggestionName) > 1 ? $suggestionName[sizeof($suggestionName) - 1] : ''
+                                                            ?>
+                                                <div class="sugest d-flex mt-3 mb-3">
+                                                    <div class="sugest d-flex">
+                                                        <img src="<?= isset($suggestion['foto_perfil']) ? $suggestion['foto_perfil'] : "/assets/img/perfil.jpg" ?>"
+                                                            class="profilePicSuggestion">
+                                                        <div class="nome">
+                                                            <a class="text-black links"
+                                                                href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= $firstSuggestionName . ' ' . $lastSuggestionName ?></a>
+                                                            <a class="text-black links"
+                                                                href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= '@' . $suggestion['username'] ?></a>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                                $status = 'follow';
+                                                                if (isset($data['following'])) {
+                                                                    foreach ($data['following'] as $folowing) {
+                                                                        if ($folowing['id_usuario'] == $suggestion['id_usuario']) {
+                                                                            $status = "unfollow";
+                                                                        }
+                                                                    }
+                                                                }
+                                                                ?>
+                                                    <a href="/user/follow/<?= (int)$suggestion['id_usuario'] ?>/<?= $status ?>"
+                                                        class="text-black links text-end"><span
+                                                            class="links"><?= $status == 'follow' ? 'Seguir' : 'Deixar de seguir' ?></span></a>
+                                                </div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
     <?php break;
-    endforeach; ?>
+        endforeach; ?>
 </header>
 
 <div class="general pb-5">
@@ -63,12 +128,12 @@
             </div>
 
             <!-- Modal New Post -->
-            <div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="newPost" tabindex="-1" aria-labelledby="modalNewPost" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content border-acordion p-3">
                         <form action="/user/publish" method="post">
                             <div class="modal-header">
-                                <h5 class="modal-title d-flex align-items-center" id="exampleModalLabel"><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação
+                                <h5 class="modal-title d-flex align-items-center" id="modalNewPost"><img class="pe-2" src="/assets/img/icon-plus.svg" alt="Ícone mais"> Nova publicação
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
@@ -122,46 +187,55 @@
                         ?>
                     </div>
                 </div> -->
-
-            <div class="suggestions border-acordion mt-5 position-relative" style="top: 43rem">
-                <div class="container p-0">
+                
+            <div class="position-relative" style="top: 43rem">
+                <div class="suggestions border-acordion mt-5 position-relative suggestions-desktop">
                     <div class="suggestion">
                         <div class="accordion border-acordion" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item border-acordion">
                                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                    <button class="accordion-button border-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    <button class="accordion-button border-acordion" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                         Sugestões para você
                                     </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show position-relative" aria-labelledby="panelsStayOpen-headingOne">
+                                <div id="panelsStayOpen-collapseOne"
+                                    class="accordion-collapse collapse position-relative"
+                                    aria-labelledby="panelsStayOpen-headingOne">
                                     <div class="accordion-body">
                                         <div>
                                             <?php foreach ($data['suggestion'] as $suggestion) { ?>
-                                                <?php
-                                                $suggestionName = explode(" ", $suggestion['nome']);
-                                                $firstSuggestionName = $suggestionName[0];
-                                                $lastSuggestionName = sizeof($suggestionName) > 1 ? $suggestionName[sizeof($suggestionName) - 1] : ''
-                                                ?>
-                                                <div class="sugest d-flex mt-3 mb-3">
-                                                    <div class="sugest d-flex">
-                                                        <img src="<?= isset($suggestion['foto_perfil']) ? $suggestion['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicSuggestion">
-                                                        <div class="nome">
-                                                            <a class="text-black links" href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= $firstSuggestionName . ' ' . $lastSuggestionName ?></a>
-                                                            <a class="text-black links" href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= '@' . $suggestion['username'] ?></a>
-                                                        </div>
+                                            <?php
+                                                        $suggestionName = explode(" ", $suggestion['nome']);
+                                                        $firstSuggestionName = $suggestionName[0];
+                                                        $lastSuggestionName = sizeof($suggestionName) > 1 ? $suggestionName[sizeof($suggestionName) - 1] : ''
+                                                        ?>
+                                            <div class="sugest d-flex mt-3 mb-3">
+                                                <div class="sugest d-flex">
+                                                    <img src="<?= isset($suggestion['foto_perfil']) ? $suggestion['foto_perfil'] : "/assets/img/perfil.jpg" ?>"
+                                                        class="profilePicSuggestion">
+                                                    <div class="nome">
+                                                        <a class="text-black links"
+                                                            href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= $firstSuggestionName . ' ' . $lastSuggestionName ?></a>
+                                                        <a class="text-black links"
+                                                            href="/user/profile/<?= (int)$suggestion['id_usuario'] ?>"><?= '@' . $suggestion['username'] ?></a>
                                                     </div>
-                                                    <?php
-                                                    $status = 'follow';
-                                                    if (isset($data['following'])) {
-                                                        foreach ($data['following'] as $folowing) {
-                                                            if ($folowing['id_usuario'] == $suggestion['id_usuario']) {
-                                                                $status = "unfollow";
-                                                            }
-                                                        }
-                                                    }
-                                                    ?>
-                                                    <a href="/user/follow/<?= (int)$suggestion['id_usuario'] ?>/<?= $status ?>" class="text-black links text-end"><span class="links"><?= $status == 'follow' ? 'Seguir' : 'Deixar de seguir' ?></span></a>
                                                 </div>
+                                                <?php
+                                                            $status = 'follow';
+                                                            if (isset($data['following'])) {
+                                                                foreach ($data['following'] as $folowing) {
+                                                                    if ($folowing['id_usuario'] == $suggestion['id_usuario']) {
+                                                                        $status = "unfollow";
+                                                                    }
+                                                                }
+                                                            }
+                                                            ?>
+                                                <a href="/user/follow/<?= (int)$suggestion['id_usuario'] ?>/<?= $status ?>"
+                                                    class="text-black links text-end"><span
+                                                        class="links"><?= $status == 'follow' ? 'Seguir' : 'Deixar de seguir' ?></span></a>
+                                            </div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -170,22 +244,45 @@
                         </div>
                     </div>
                 </div>
+                <footer class="mb-5 pb-5">
+                    <div class="row justify-content-between mt-4">
+                        <div>
+                            <ul class="navbar-nav footer-inside list-style-disc nav-footer">
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="/home#about" class="nav-link">Sobre</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a class="nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdropContact">Contato</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="#" class="nav-link">Termos de Uso</a>
+                                </li>
+                                <li class="nav-item ms-3 me-3">
+                                    <a href="#" class="nav-link">Políticas de Privacidade</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="mt-2 text-center">
+                            &copy; 2021 - VirtuArte
+                        </span>
+                    </div>
+                </footer>
             </div>
         </aside>
         <main class="mx-5 w-100">
             <?php foreach ($data['user'] as $user) : ?>
-                <div class="profile align-center d-flex bg-white row">
-                    <div class="d-flex p-5 col-6">
+                <div class="profile align-center d-flex bg-white row" style="padding: 2.35rem">
+                    <div class="d-flex justify-content-center align-items-center col-profile col-8" id="profileInfo">
                         <?php
                         $id = $_SESSION['usersId'];
                         if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") {
                         ?>
-                            <div class="modal fade" id="newPhotoProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="newPhotoProfile" tabindex="-1" aria-labelledby="modalProfilePic" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content border-acordion p-3">
                                         <form action="/user/publishPhotoProfile" method="post">
                                             <div class="modal-header">
-                                                <h5 class="modal-title d-flex align-items-center" id="exampleModalLabel">Trocar foto de perfil</h5>
+                                                <h5 class="modal-title d-flex align-items-center" id="modalProfilePic">Trocar foto de perfil</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -248,7 +345,7 @@
                                     <span class="mx-4">0</span>
                                 </div>
 
-                                <div class="modal fade" id="modalFollow" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="modalFollow" tabindex="-1" aria-labelledby="modalFollowers" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content border-acordion p-3">
                                             <div class="modal-header">
@@ -303,17 +400,23 @@
                             </div>
                         </div>
                     </div>
-                    <div id="address" class="row p-5 col-4">
+                    <?php if(sizeof($data['address']) > 0 ){ ?>
+                    <div id="address" class="row p-5 col-profile col-4">
                         <div>
-                            <h4 class="color-purple">Venha conhecer</h4>
                             <?php foreach ($data['address'] as $address) : ?>
+                                <h4 class="color-purple">Venha conhecer</h4>
                                 <?= $address['logradouro'].', '.$address['numero'].' - '.$address['bairro'].', '.$address['cidade'].' - '.$address['sigla'].', '.$address['cep'] ?>
                             <?php break; endforeach; ?>
                         </div>
                     </div>
+                    <?php } else { ?>
+                        <script>
+                            document.getElementById('profileInfo').style.width = "100%";
+                        </script>
+                    <?php }  ?>
                 </div>
 
-                <section class="feed w-100 row justify-content-center">
+                <section class="feed w-100 row justify-content-center align-items-center">
                     <?php if (sizeof($data['post']) == 0) { ?>
                         <div class="w-100 h-25 d-flex flex-column align-items-center justify-content-center my-5">
                             <img src="/assets/img/vitu-chat.png" alt="" width="75" class="m-5">
@@ -337,25 +440,46 @@
 
                                 <div class="background position-relative w-fit-content">
                                     <div>
-                                        <img class="d-block shadow-sm w-100 h-post" src="<?= $post['midia'] ?>" alt="Exposição de arte">
+                                        <img class="d-block shadow-sm img-radius w-100 h-post" src="<?= $post['midia'] ?>" >
                                     </div>
                                     <div class="legend carousel-caption bottom-0 p-0">
                                         <p class="text-break m-0"><?= $post['legenda'] ?></p>
                                     </div>
 
+                                    <!-- Modal Delete Post -->
+                                    <div class="modal fade" id="post<?= $post['id_publicacao'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content border-acordion p-3">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja excluir excluir essa postagem?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body" style="min-height: auto">
+                                                    Essa ação não poderá ser desfeita.
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-red" data-bs-dismiss="modal">Cancelar</button>
+                                                    <a href="/user/deletePost/<?= (int)$post['id_publicacao'] ?>" class="btn btn-comment">
+                                                        Excluir
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="interaction position-absolute d-flex gap-3">
                                         <?php
                                         $id = $_SESSION['usersId'];
                                         if ($_SERVER['REQUEST_URI'] == "/user/profile/$id") {
                                         ?>
                                             <div class="trash">
-                                                <a href="/user/deletePost/<?= (int)$post['id_publicacao'] ?>" id="btn-like">
+                                                <a id="btn-like" data-bs-toggle="modal" data-bs-target="#post<?= $post['id_publicacao'] ?>">
                                                     <img style="width: 20px; height: 22px" src="/assets/img/lixeira.png" alt="Botão de Excluir">
                                                 </a>
                                             </div>
-                                        <?php } ?>
-                                        <div class="like">
-                                            <?php
+
+                                            <?php } ?>
+                                            <div class="like">
+                                                <?php
                                             $status = 'notlike';
                                             if (isset($data['liked'])) {
                                                 foreach ($data['liked'] as $liked) {
@@ -369,7 +493,7 @@
                                                 <img style="width: 20px; height: 20px" src="/assets/img/<?= $status == 'like' ? 'liked.png' : 'notliked.png' ?>" alt="Botão de like">
                                             </a>
                                         </div>
-
+                                        
                                         <div class="coment">
 
                                             <!-- Button trigger modal -->
@@ -377,10 +501,10 @@
                                                 <img src="/assets/img/comment.svg" alt="Botão de comentar">
                                             </a>
 
-                                            <!-- Modal -->
+                                            <!-- Modal Comment -->
                                             <div class="modal fade" id="staticBackdrop<?= $post['id_publicacao'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-scrollable">
-                                                    <div class="modal-content">
+                                                    <div class="modal-content border-acordion p-3">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="staticBackdropLabel">Comentários</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -390,15 +514,21 @@
                                                                 <?php if ($post['id_publicacao'] == $comment['fk_publicacao_id_publicacao']) { ?>
                                                                     <div class="feed-posts position-relative w-post m-3 mt-0">
                                                                         <div class="dates d-flex align-items-center gap-4">
-                                                                            <img src="<?= isset($user['foto_perfil']) ? $user['foto_perfil'] : "/assets/img/perfil.jpg" ?>" class="profilePicPost">
+                                                                            <img src="<?= isset($comment['foto_perfil']) ? $comment['foto_perfil'] : "/assets/img/perfil.jpg" ?>"
+                                                                                class="profilePicPost">
                                                                             <div class="creator">
-                                                                                <h4><?= $firstName . ' ' . $lastName ?></h4>
+                                                                                <?php
+                                                                                $nameComment = explode(" ", $comment['nome']);
+                                                                                $firstNameComment = $nameComment[0];
+                                                                                $lastNameComment = sizeof($nameComment) > 1 ? $nameComment[sizeof($nameComment) - 1] : ''
+                                                                                ?>
+                                                                                <h4 class="m-0"><?= $firstNameComment . ' ' . $lastNameComment ?></h4>
                                                                             </div>
                                                                         </div>
-
+                    
                                                                         <div class="background position-relative w-fit-content">
                                                                             <div>
-                                                                                <p class="d-block shadow-sm w-100">
+                                                                                <p class="mt-3 px-2 pb-2 d-block shadow-sm w-100">
                                                                                     <?= $comment['comentario'] ?></p>
                                                                             </div>
                                                                         </div>
@@ -413,9 +543,9 @@
                                                             <?php } ?>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form action="/user/publishComment/<?= $post['id_publicacao'] ?>" method="post" class="w-100 d-flex justify-content-between">
+                                                            <form action="/user/publishComment/<?= $post['id_publicacao'] ?>" method="post" class="w-100 d-flex justify-content-between align-items-center">
                                                                 <textarea name="comment" id="comment"></textarea>
-                                                                <button type="submit" class="btn" id="btn-submit">Enviar</button>
+                                                                <button type="submit" class="btn btn-comment" id="btn-submit">Salvar</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -436,3 +566,9 @@
         </main>
     </div>
 </div>
+
+<?php
+} else {
+    header('Location: /user/login');
+}
+    ?>

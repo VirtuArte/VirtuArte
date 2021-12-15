@@ -64,11 +64,11 @@
       <?php 
         //if($_SERVER['REQUEST_URI'] == '/user/feed'){
       ?>
-      <div class="accordion chatbot border-acordion" id="accordionExample">
+      <div class="accordion chatbot border-acordion" id="chatbot">
         <div class="accordion-item border-acordion">
           <div class="accordion-header" id="headingOne">
             <!-- <button class="accordion-button border-acordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"> -->
-            <button class="accordion-button border-acordion" type="button" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            <button class="accordion-button border-acordion collapsed" id="chat-mobile-button" type="button" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
               Converse com o Vitu
             </button>
           </div>
@@ -217,6 +217,31 @@
     <script src="/assets/js/user/feed.js"></script>
     
     <script>
+      function sizeChatbot(){
+        var chatButton = document.getElementById('chat-mobile-button');
+        console.log('resize');
+        if(window.innerWidth > 768){
+          chatButton.setAttribute('data-bs-toggle', '');
+          document.getElementById('collapseOne').classList.add('show');
+          if(document.getElementById('feed')){
+            document.getElementById('feed').classList.add('mx-5');
+          }
+        }
+        else if(window.innerWidth <= 768){
+          chatButton.setAttribute('data-bs-toggle', 'collapse');
+          document.getElementById('collapseOne').classList.remove('show');
+          if(document.getElementById('feed')){
+            document.getElementById('feed').classList.remove('mx-5');
+          }
+        }
+      };
+      sizeChatbot();
+
+      window.addEventListener('resize', function(){
+        sizeChatbot();
+      });
+        
+
       $(document).ready(function(){
         $nivel = $("#nivel").val();
           $estado       = '';
@@ -244,9 +269,6 @@
               $preferencia = $value;
             }
           }
-
-          console.log("Estado: "+$estado);
-          console.log("Cidade: "+$cidade);
           
           // start ajax code
           $.ajax({
